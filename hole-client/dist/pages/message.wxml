@@ -1,0 +1,25 @@
+
+  <scroll-view scroll-y="true" bindscrolltolower="loadNextPage" class="list">
+    <view class="operations">
+      <view class="operation markAllRead" catchtap="markAllRead" data-wpymarkallread-a="">
+        <image src="../assets/svgs/markAllRead.svg"/>
+        <text>全部标为已读</text>
+      </view>
+      <view class="operation refresh" catchtap="refresh" data-wpyrefresh-a="">
+        <image src="../assets/svgs/refresh.svg"/>
+        <text>刷新</text>
+      </view>
+    </view>
+    <view  wx:for="{{ list }}" wx:for-item="item" wx:key="{{ idx }}" wx:for-index="idx" catchtap="jumpTo" class="item {{ item.isUnread ? 'unread' : 'read' }}" data-wpyjumpto-a="{{ item.bid }}" data-wpyjumpto-b="{{ item.nid }}">
+      <view class="avatar">
+        <image src="{{ item.user.avatar }}" class="avatar-image"/>
+      </view>
+      <view class="content">
+        <view class="userinfo">
+          <text class="nickname">{{ item.user.nickname }}</text>
+          <text class="time"> {{ item.time }}</text>
+        </view>
+        <text class="message-content">{{ item.content }}</text>
+      </view>
+    </view>
+  </scroll-view>

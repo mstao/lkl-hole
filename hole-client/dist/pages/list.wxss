@@ -1,0 +1,2 @@
+@import "./../components/clist.wxss";
+.main-list{width:100%}.main-list .ads{position:relative;width:100%}.main-list .ads .ad-image{width:100%;height:70px}.main-list .ads .close-btn{position:absolute;top:23px;right:23px;width:24px;height:24px;opacity:.5}.main-list .ads .close-btn image{width:100%;height:100%}

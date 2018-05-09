@@ -1,0 +1,24 @@
+
+  <scroll-view scroll-y="true" bindscrolltolower="loadNext" class="user">
+    <view class="userinfo">
+      <view class="avatar">
+        <image src="{{ userinfo.avatarUrl }}" class="avatar-image"/>
+      </view>
+      <view class="nickname">
+        <text>{{ userinfo.nickName }}</text>
+      </view>
+    </view>
+    <view class="blogs">
+      <navigator  wx:for="{{ blogs }}" wx:for-item="item" wx:key="{{ idx }}" wx:for-index="idx" url="/pages/detail?id={{ item.id }}" open-type="navigate" class="item-body">
+        <text class="item-body-content">{{ item.content }}</text>
+        <view class="item-body-images" wx:if="{{ item.images.length !== 0 }}">
+          <image wx:for-item="image" wx:for="{{ item.images }}" wx:for-index="i" wx:key="{{ i }}" catchtap="viewPic" src="{{ image }}" class="item-body-image" mode="aspectFill" data-wpyviewpic-a="{{ image }}" data-wpyviewpic-b="{{ item.images }}">
+          </image>
+        </view>
+        <view class="item-location" wx:if="{{ item.location }}" catchtap="showLocation" data-wpyshowlocation-a="{{ item.latitude }}" data-wpyshowlocation-b="{{ item.longitude }}">
+          <image class="location-icon" src="../assets/svgs/location.svg"/>
+          <text>{{ item.location }}</text>
+        </view>
+      </navigator>
+    </view>
+  </scroll-view>

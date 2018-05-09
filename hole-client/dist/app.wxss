@@ -1,0 +1,1 @@
+page{background:#EEE;height:100%}view,navigator,textarea,input{box-sizing:border-box}.navigator-hover{opacity:1}.other-navigator-hover{opacity:1}.container{position:relative;height:100%;width:100%}
