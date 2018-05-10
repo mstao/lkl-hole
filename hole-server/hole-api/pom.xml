@@ -151,6 +151,16 @@
             <artifactId>dozer-spring</artifactId>
         </dependency>
 
+        <!--wechat -->
+        <dependency>
+            <groupId>org.codehaus.xfire</groupId>
+            <artifactId>xfire-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk16</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.lkl</groupId>
             <artifactId>hole-common</artifactId>
