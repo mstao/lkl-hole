@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="com.lkl.hole.service.dao.UserDao">
+
+    <!-- 用户信息 resultMap -->
+    <resultMap type="com.lkl.hole.facade.model.User" id="userResultMap">
+
+        <id column="id" property="uid"/>
+        <result column="openid" property="openId"/>
+        <result column="nickname" property="nickName"/>
+        <result column="gender" property="gender"/>
+        <result column="avatar" property="avatar"/>
+        <result column="is_admin" property="admin"/>
+        <result column="is_author" property="author"/>
+        <result column="is_verified" property="verified"/>
+
+    </resultMap>
+
+    <sql id="userColumns">openid,avatar,nickname,gender,is_admin,is_author, unionid</sql>
+
+    <!-- 查询sql -->
+    <sql id="query_user_where">
+
+         <if test="name != null and name !=''">
+         and name=#{name}
+         </if>
+
+        <if test="ids !=null and ids!='' ">
+            <!-- foreach  遍历集合  拼接sql  id in(1,2) -->
+             <foreach collection="ids" item="item" open="id in(" close=")" separator="," >
+                 #{item}
+             </foreach>
+        </if>
+    </sql>
+
+
+    <!-- 根据id获取用户信息 -->
+    <select id="findByOpenId"  resultMap="userResultMap">
+        select id, <include refid="userColumns"/> from hole_user where openid = #{openid}
+    </select>
+
+    <insert id="insert" parameterType="com.lkl.hole.facade.model.User" useGeneratedKeys="true" keyProperty="id">
+        insert into hole_user (openid, avatar, nickname, gender, unionid, gmt_create, gmt_modified)
+        values (#{openId}, #{avatar}, #{nickName}, #{gender} #{unionId}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="com.lkl.hole.facade.model.User">
+      UPDATE user set avatar=#{avatar},nickname=#{nickName},gender=#{gender},unionId=#{unionid} WHERE openid=#{openId}
+    </update>
+</mapper>
