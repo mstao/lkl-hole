@@ -14,7 +14,7 @@ public interface WxService {
      * @param wxCode
      * @return
      */
-    Map<String,Object> getWxSession(String wxCode);
+    Map<String, Object> getWxSession(String wxCode);
 
     /**
      * 缓存微信openId和session_key

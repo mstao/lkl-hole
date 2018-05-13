@@ -12,68 +12,100 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
-    private long uid;
+    private Long uid;
     private String openId;
     private String avatarUrl;
     private String nickName;
-    private int gender;
+    private Integer gender;
     private String unionId;
-    private boolean isAdmin;
-    private boolean isAuthor;
-    private boolean isVerified;
+    private Boolean isAdmin;
+    private Boolean isAuthor;
+    private Boolean isVerified;
 
-    public long getUid() {
+    public Long getUid() {
         return uid;
     }
-    public void setUid(long uid) {
+
+    public void setUid(Long uid) {
         this.uid = uid;
     }
+
     public String getOpenId() {
         return openId;
     }
+
     public void setOpenId(String openId) {
         this.openId = openId;
     }
+
     public String getAvatarUrl() {
         return avatarUrl;
     }
+
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
     }
+
     public String getNickName() {
         return nickName;
     }
+
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
-    public int getGender() {
+
+    public Integer getGender() {
         return gender;
     }
-    public void setGender(int gender) {
+
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
+
     public String getUnionId() {
         return unionId;
     }
+
     public void setUnionId(String unionId) {
         this.unionId = unionId;
     }
-    public boolean isAdmin() {
+
+    public Boolean getAdmin() {
         return isAdmin;
     }
-    public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
-    public boolean isAuthor() {
+
+    public Boolean getAuthor() {
         return isAuthor;
     }
-    public void setAuthor(boolean isAuthor) {
-        this.isAuthor = isAuthor;
+
+    public void setAuthor(Boolean author) {
+        isAuthor = author;
     }
-    public boolean isVerified() {
+
+    public Boolean getVerified() {
         return isVerified;
     }
-    public void setVerified(boolean isVerified) {
-        this.isVerified = isVerified;
+
+    public void setVerified(Boolean verified) {
+        isVerified = verified;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", openId='" + openId + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", gender=" + gender +
+                ", unionId='" + unionId + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", isAuthor=" + isAuthor +
+                ", isVerified=" + isVerified +
+                '}';
     }
 }

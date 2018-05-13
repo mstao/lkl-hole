@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="com.lkl.hole.service.dao.NotificationDao">
+
+    <resultMap id="notificationResultMap" type="com.lkl.hole.facade.model.Notification">
+        <id column="id" property="nid"/>
+        <result column="cid" property="cid"/>
+        <result column="bid" property="bid"/>
+        <result column="from" property="from"/>
+        <result column="to" property="to"/>
+        <result column="content" property="content"/>
+    </resultMap>
+
+    <select id="selectCount" resultType="java.lang.Integer">
+      SELECT COUNT(*) FROM  hole_notification where is_unread = 1
+    </select>
+
+
+    <select id="selectByPage" resultMap="notificationResultMap">
+        SELECT id nid,
+               cid,
+               bid,
+               from,
+               to,
+               content,
+               gmt_create
+        FROM hole_notification
+        WHERE is_unread = 1
+    </select>
+
+    <insert id="insert">
+        INSERT INTO hole_notification VALUES ()
+    </insert>
+</mapper>

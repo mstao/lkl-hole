@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="com.lkl.hole.service.dao.BlogDao">
+
+    <!-- resultMap -->
+    <resultMap type="com.lkl.hole.facade.model.Blog" id="blogResultMap">
+
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="text" property="text"/>
+        <result column="device" property="device"/>
+        <result column="is_fixed" property="fixed"/>
+        <result column="like" property="like"/>
+        <result column="like_num" property="likeNum"/>
+        <result column="comment_num" property="commentNum"/>
+        <result column="gmt_create" property="gmtCreate"/>
+
+        <!-- Blog 与 User 映射 -->
+        <association property="user" javaType="com.lkl.hole.facade.model.User">
+            <id column="b_uid" property="uid"/>
+            <result column="b_openid" property="openId"/>
+            <result column="b_nickname" property="nickName"/>
+            <result column="b_gender" property="gender"/>
+            <result column="b_avatar" property="avatarUrl"/>
+            <result column="b_is_admin" property="admin"/>
+            <result column="b_is_author" property="author"/>
+            <result column="b_is_verified" property="verified"/>
+        </association>
+
+        <!-- Blog 与 location 映射 -->
+        <association property="location" javaType="com.lkl.hole.facade.model.Location">
+            <result column="location_name" property="locationName"/>
+            <result column="latitude" property="latitude"/>
+            <result column="longitude" property="longitude"/>
+        </association>
+
+        <!-- Blog  与 image 映射 -->
+        <collection property="images" ofType="com.lkl.hole.facade.model.Image">
+            <result column="url" property="url"/>
+        </collection>
+
+        <!-- Blog 与 comment 映射 -->
+        <collection property="comments" ofType="com.lkl.hole.facade.model.Comment">
+            <result column="cid" property="cid"/>
+            <result column="c_uid" property="uid"/>
+
+            <!-- Comment 与 user 映射 -->
+            <association property="user" javaType="com.lkl.hole.facade.model.User">
+                <result column="c_openid" property="openId"/>
+                <result column="c_nickname" property="nickName"/>
+                <result column="c_gender" property="gender"/>
+                <result column="c_avatar" property="avatarUrl"/>
+                <result column="c_is_admin" property="admin"/>
+                <result column="c_is_author" property="author"/>
+            </association>
+        </collection>
+    </resultMap>
+
+
+    <!-- 用户信息 resultMap -->
+    <resultMap type="com.lkl.hole.facade.model.Blog" id="blogResultMap2">
+
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="text" property="text"/>
+        <result column="device" property="device"/>
+        <result column="is_fixed" property="fixed"/>
+        <result column="like" property="like"/>
+        <result column="like_num" property="likeNum"/>
+        <result column="comment_num" property="commentNum"/>
+        <result column="gmt_create" property="gmtCreate"/>
+
+        <!-- Blog 与 User 映射 -->
+        <association property="user" javaType="com.lkl.hole.facade.model.User">
+            <id column="b_uid" property="uid"/>
+            <result column="b_openid" property="openId"/>
+            <result column="b_nickname" property="nickName"/>
+            <result column="b_gender" property="gender"/>
+            <result column="b_avatar" property="avatarUrl"/>
+            <result column="b_is_admin" property="admin"/>
+            <result column="b_is_author" property="author"/>
+            <result column="b_is_verified" property="verified"/>
+        </association>
+
+        <!-- Blog 与 location 映射 -->
+        <association property="location" javaType="com.lkl.hole.facade.model.Location">
+            <result column="location_name" property="locationName"/>
+            <result column="latitude" property="latitude"/>
+            <result column="longitude" property="longitude"/>
+        </association>
+
+        <!-- Blog  与 image 映射 -->
+        <collection property="images" ofType="com.lkl.hole.facade.model.Image">
+            <result column="url" property="url"/>
+        </collection>
+    </resultMap>
+
+    <!-- 根据id获取用户信息 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="blogResultMap">
+        SELECT b.id,
+               b.text,
+               b.device,
+               b.is_fixed,
+               b.like,
+               b.like_num,
+               b.comment_num,
+               b.gmt_create,
+               lo.location_name,
+               lo.latitude,
+               lo.longitude,
+               u.id b_uid,
+               u.openid b_openid,
+               u.avatar b_avatar,
+               u.nickname b_nickname,
+               u.gender b_gender,
+               u.is_admin b_is_admin,
+               u.is_author b_is_author,
+               u.is_verified b_is_verified,
+               i.url,
+               co.cid,
+               co.content,
+               co.is_anonymous,
+               co.gmt_create,
+               co.c_openid,
+               co.c_avatar,
+               co.c_nickname,
+               co.c_gender,
+               co.c_is_admin,
+               co.c_is_author
+        FROM hole_blog b
+        LEFT JOIN hole_location lo ON lo.bid = b.id
+        LEFT JOIN hole_user u ON u.id = b.uid
+        LEFT JOIN hole_image i ON i.bid = b.id
+        LEFT JOIN (
+          SELECT c.id cid,
+                 c.bid,
+                 c.content,
+                 c.is_anonymous,
+                 c.gmt_create,
+                 u.openid c_openid,
+                 u.avatar c_avatar,
+                 u.nickname c_nickname,
+                 u.gender c_gender,
+                 u.is_admin c_is_admin,
+                 u.is_author c_is_author
+          FROM hole_comment c
+          LEFT JOIN hole_user u ON u.id = c.uid
+          WHERE c.is_deleted = 0
+        ) co ON  co.bid = b.id
+        WHERE b.id = #{id} AND b.is_deleted = 0
+    </select>
+
+    <select id="selectByPage" resultMap="blogResultMap2">
+        SELECT b.id,
+               b.text,
+               b.device,
+               b.is_fixed,
+               b.like,
+               b.like_num,
+               b.comment_num,
+               b.gmt_create,
+               lo.location_name,
+               lo.latitude,
+               lo.longitude,
+               u.id b_uid,
+               u.openid b_openid,
+               u.avatar b_avatar,
+               u.nickname b_nickname,
+               u.gender b_gender,
+               u.is_admin b_is_admin,
+               u.is_author b_is_author,
+               u.is_verified b_is_verified,
+               i.url
+        FROM hole_blog b
+        LEFT JOIN hole_location lo ON lo.bid = b.id
+        LEFT JOIN hole_user u ON u.id = b.uid
+        LEFT JOIN hole_image i ON i.bid = b.id
+        WHERE b.is_deleted = 0
+    </select>
+
+    <insert id="insert" parameterType="com.lkl.hole.facade.model.Blog" useGeneratedKeys="true" keyProperty="id">
+        insert into hole_blog(text, device, uid, is_anonymous, gmt_create, gmt_modified)
+        values (#{text}, #{device}, #{uid}, #{isAnonymous}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="com.lkl.hole.facade.model.User">
+      UPDATE hole_user
+        <set>
+            <if test="avatarUrl !=null and avatarUrl !=''">
+                avatar=#{avatarUrl},
+            </if>
+            <if test="nickName != null and nickName != ''">
+                nickname=#{nickName},
+            </if>
+            <if test="unionId != null and unionId != ''">
+                unionid=#{unionId}
+            </if>
+            <!-- 自行添加其他 -->
+        </set>
+       WHERE openid=#{openId}
+    </update>
+
+    <update id="increaseLikeNum" parameterType="java.lang.Long">
+      UPDATE hole_blog SET like_num = like_num + 1 where id = #{id}
+    </update>
+
+    <update id="delete" parameterType="java.lang.Long">
+        UPDATE hole_blog SET is_deleted = 1 WHERE id = #{id}
+    </update>
+</mapper>
