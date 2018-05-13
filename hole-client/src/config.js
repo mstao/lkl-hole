@@ -7,7 +7,7 @@ const version = 2.0
 // development and production host
 const hosts = {
   development: 'http://localhost:3020',
-  production: 'https://www.mingzhiwen.cn'
+  production: 'https://www.mingzhiwen.cn/hole-api'
 }
 
 // apis

@@ -42,8 +42,9 @@
     </aop:config>
 
     <!-- 加载配置文件 -->
-    <context:property-placeholder location="classpath:db.properties" />
+    <context:property-placeholder location="classpath:db.properties, redis-config.properties" />
 
+    <import resource="classpath*:spring/spring-redis.xml"/>
     <import resource="classpath*:spring/spring-dubbo-provider.xml"/>
     <import resource="classpath*:spring/spring-mybatis.xml"/>
 </beans>

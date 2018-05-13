@@ -1,5 +1,6 @@
 package com.lkl.hole.service.impl;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lkl.hole.common.util.AES;
 import com.lkl.hole.common.util.StringUtil;
@@ -49,6 +50,7 @@ public class UserServiceImpl implements UserService {
                 System.out.println("decode user: " + userInfo);
                 User user;
                 ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
                 try {
                     user = objectMapper.readValue(userInfo, User.class);
                     return user;

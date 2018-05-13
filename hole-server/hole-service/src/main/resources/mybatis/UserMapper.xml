@@ -12,7 +12,7 @@
         <result column="openid" property="openId"/>
         <result column="nickname" property="nickName"/>
         <result column="gender" property="gender"/>
-        <result column="avatar" property="avatar"/>
+        <result column="avatar" property="avatarUrl"/>
         <result column="is_admin" property="admin"/>
         <result column="is_author" property="author"/>
         <result column="is_verified" property="verified"/>
@@ -44,10 +44,23 @@
 
     <insert id="insert" parameterType="com.lkl.hole.facade.model.User" useGeneratedKeys="true" keyProperty="id">
         insert into hole_user (openid, avatar, nickname, gender, unionid, gmt_create, gmt_modified)
-        values (#{openId}, #{avatar}, #{nickName}, #{gender} #{unionId}, NOW(), NOW())
+        values (#{openId}, #{avatarUrl}, #{nickName}, #{gender}, #{unionId,jdbcType=VARCHAR}, NOW(), NOW())
     </insert>
 
     <update id="update" parameterType="com.lkl.hole.facade.model.User">
-      UPDATE user set avatar=#{avatar},nickname=#{nickName},gender=#{gender},unionId=#{unionid} WHERE openid=#{openId}
+      UPDATE hole_user
+        <set>
+            <if test="avatarUrl !=null and avatarUrl !=''">
+                avatar=#{avatarUrl},
+            </if>
+            <if test="nickName != null and nickName != ''">
+                nickname=#{nickName},
+            </if>
+            <if test="unionId != null and unionId != ''">
+                unionid=#{unionId}
+            </if>
+            <!-- 自行添加其他 -->
+        </set>
+       WHERE openid=#{openId}
     </update>
 </mapper>

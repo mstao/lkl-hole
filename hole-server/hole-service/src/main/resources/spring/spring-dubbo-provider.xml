@@ -13,7 +13,9 @@
 
     <bean id="wxService" class="com.lkl.hole.service.impl.WxServiceImpl"/>
     <bean id="userService" class="com.lkl.hole.service.impl.UserServiceImpl"/>
+    <bean id="redisTokenService" class="com.lkl.hole.service.impl.RedisTokenServiceImpl"/>
 
     <dubbo:service interface="com.lkl.hole.facade.service.WxService" ref="wxService"/>
     <dubbo:service interface="com.lkl.hole.facade.service.UserService" ref="userService"/>
+    <dubbo:service interface="com.lkl.hole.facade.service.RedisTokenService" ref="redisTokenService"/>
 </beans>

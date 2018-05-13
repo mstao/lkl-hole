@@ -25,4 +25,9 @@ public class WxAuth {
      * 登陆时颁发的 session
      */
     public static final String WX_SESSION = "x-wechat-session";
+
+    /**
+     * Session有效时间
+     */
+    public static final long EXPIRES = 3600 * 24;
 }

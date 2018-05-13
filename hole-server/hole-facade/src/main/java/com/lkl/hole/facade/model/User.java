@@ -1,18 +1,20 @@
 package com.lkl.hole.facade.model;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * @Author: mingshan
  * @Date: Created in 10:15 2018/5/11
  */
+@JsonInclude(Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
     private long uid;
     private String openId;
-    private String avatar;
+    private String avatarUrl;
     private String nickName;
     private int gender;
     private String unionId;
@@ -32,11 +34,11 @@ public class User implements Serializable {
     public void setOpenId(String openId) {
         this.openId = openId;
     }
-    public String getAvatar() {
-        return avatar;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
     public String getNickName() {
         return nickName;

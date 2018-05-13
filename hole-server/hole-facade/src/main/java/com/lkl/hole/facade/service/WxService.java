@@ -19,9 +19,7 @@ public interface WxService {
     /**
      * 缓存微信openId和session_key
      * @param wxOpenId		微信用户唯一标识
-     * @param wxSessionKey	微信服务器会话密钥
-     * @param expires		会话有效期, 以秒为单位, 例如2592000代表会话有效期为30天
      * @return
      */
-    String create3rdSession(String wxOpenId, String wxSessionKey, Long expires);
+    String create3rdSession(String wxOpenId);
 }

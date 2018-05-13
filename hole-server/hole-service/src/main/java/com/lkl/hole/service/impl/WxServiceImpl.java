@@ -3,9 +3,12 @@ package com.lkl.hole.service.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lkl.hole.common.util.HttpUtil;
 import com.lkl.hole.common.util.RedisHelper;
+import com.lkl.hole.facade.model.Token;
+import com.lkl.hole.facade.service.RedisTokenService;
 import com.lkl.hole.facade.service.WxService;
 import com.lkl.hole.service.constant.WxAuth;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -17,6 +20,8 @@ import java.util.Map;
  */
 @Service
 public class WxServiceImpl implements WxService {
+    @Autowired
+    private RedisTokenService redisTokenService;
 
     @Override
     public Map<String, Object> getWxSession(String wxCode) {
@@ -38,12 +43,10 @@ public class WxServiceImpl implements WxService {
     }
 
     @Override
-    public String create3rdSession(String wxOpenId, String wxSessionKey, Long expires) {
-        String thirdSessionKey = RandomStringUtils.randomAlphanumeric(64);
-        StringBuffer sb = new StringBuffer();
-        sb.append(wxSessionKey).append("#").append(wxOpenId);
-        String res = RedisHelper.put(thirdSessionKey, expires, sb.toString());
-        System.out.println(res);
+    public String create3rdSession(String wxOpenId) {
+        Token token = redisTokenService.creatToken(wxOpenId);
+        String thirdSessionKey = token.getToken();
+        System.out.println(thirdSessionKey);
         return thirdSessionKey;
     }
 }
