@@ -15,7 +15,7 @@ public interface NotificationService {
      *
      * @return
      */
-    int getCount(Long openId);
+    int getCount(String openId);
 
     /**
      * 分页获取数据
@@ -24,5 +24,19 @@ public interface NotificationService {
      * @param pageSize
      * @return
      */
-    PageInfo<Notification> findAll(int pageNumber, int pageSize);
+    PageInfo<Notification> findAll(int pageNumber, int pageSize, String openId);
+
+    /**
+     * 插入通知
+     *
+     * @param notification
+     */
+    void add(Notification notification);
+
+    /**
+     * 标记通知为已读
+     *
+     * @param id
+     */
+    void markRead(Long id);
 }

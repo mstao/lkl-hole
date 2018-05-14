@@ -14,12 +14,12 @@ public interface CommentDao {
      * @param comment
      * @return
      */
-    int insert(Comment comment);
+    Long insert(Comment comment);
 
     /**
      * 删除评论
      *
-     * @param cid
+     * @param id
      */
-    void delete(Long cid);
+    void delete(Long id);
 }

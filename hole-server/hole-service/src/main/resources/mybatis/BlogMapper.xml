@@ -44,7 +44,7 @@
 
         <!-- Blog 与 comment 映射 -->
         <collection property="comments" ofType="com.lkl.hole.facade.model.Comment">
-            <result column="cid" property="cid"/>
+            <result column="cid" property="id"/>
             <result column="c_uid" property="uid"/>
 
             <!-- Comment 与 user 映射 -->

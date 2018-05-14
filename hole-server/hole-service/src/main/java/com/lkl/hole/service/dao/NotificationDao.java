@@ -3,6 +3,7 @@ package com.lkl.hole.service.dao;
 import com.lkl.hole.facade.model.Blog;
 import com.lkl.hole.facade.model.Comment;
 import com.lkl.hole.facade.model.Notification;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface NotificationDao {
      *
      * @return
      */
-    int selectCount();
+    int selectCount(@Param("openId") String openId);
 
 
     /**
@@ -25,13 +26,20 @@ public interface NotificationDao {
      *
      * @return
      */
-    List<Blog> selectByPage();
+    List<Notification> selectByPage(@Param("openId") String openId);
 
 
     /**
-     * 插入
+     * 插入通知
      *
      * @param notification
      */
     void insert(Notification notification);
+
+    /**
+     * 标记通知为已读
+     *
+     * @param id
+     */
+    void markRead(Long id);
 }

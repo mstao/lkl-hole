@@ -28,7 +28,7 @@ const api = {
     },
     info: {
       method: 'GET',
-      url: '/user/info'
+      url: '/v2/user/info'
     },
     blog: {
       method: 'GET',
@@ -46,15 +46,15 @@ const api = {
     },
     like: {
       method: 'POST',
-      url: '/blog/like'
+      url: '/v2/blog/like'
     },
     delete: {
       method: 'POST',
-      url: '/blog/delete'
+      url: '/v2/blog/delete'
     },
     imageUpload: {
       method: 'POST',
-      url: '/blog/image'
+      url: '/v2/blog/image'
     },
     new: {
       method: 'POST',

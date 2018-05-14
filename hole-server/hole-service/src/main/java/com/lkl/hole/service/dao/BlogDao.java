@@ -20,24 +20,24 @@ public interface BlogDao {
     /**
      * 获取单条信息
      *
-     * @param bid
+     * @param id
      * @return
      */
-    Blog selectByPrimaryKey(Long bid);
+    Blog selectByPrimaryKey(Long id);
 
     /**
      * 点赞
      *
-     * @param bid
+     * @param id
      */
-    void increaseLikeNum(Long bid);
+    void increaseLikeNum(Long id);
 
     /**
      * 删除
      *
-     * @param bid
+     * @param id
      */
-    void delete(Long bid);
+    void delete(Long id);
 
 
     /**

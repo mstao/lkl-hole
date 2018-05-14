@@ -1,5 +1,8 @@
 package com.lkl.hole.facade.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -7,8 +10,11 @@ import java.util.Date;
  * @Author: mingshan
  * @Date: Created in 15:38 2018/5/13
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment implements Serializable {
-    private Long cid;
+    private Long id;
+    private Long bid;
     private Long uid;
     private String content;
     private Boolean isAnonymous;
@@ -18,12 +24,20 @@ public class Comment implements Serializable {
 
     private User user;
 
-    public Long getCid() {
-        return cid;
+    public Long getId() {
+        return id;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getBid() {
+        return bid;
+    }
+
+    public void setBid(Long bid) {
+        this.bid = bid;
     }
 
     public Long getUid() {
@@ -85,7 +99,8 @@ public class Comment implements Serializable {
     @Override
     public String toString() {
         return "Comment{" +
-                "cid=" + cid +
+                "id=" + id +
+                ", bid=" + bid +
                 ", uid=" + uid +
                 ", content='" + content + '\'' +
                 ", isAnonymous=" + isAnonymous +

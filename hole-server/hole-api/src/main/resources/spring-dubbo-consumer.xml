@@ -12,4 +12,7 @@
     <dubbo:reference id="wxService" interface="com.lkl.hole.facade.service.WxService"/>
     <dubbo:reference id="userServcie" interface="com.lkl.hole.facade.service.UserService"/>
     <dubbo:reference id="redisTokenService" interface="com.lkl.hole.facade.service.RedisTokenService"/>
+    <dubbo:reference id="blogService" interface="com.lkl.hole.facade.service.BlogService"/>
+    <dubbo:reference id="notificationService" interface="com.lkl.hole.facade.service.NotificationService"/>
+    <dubbo:reference id="commentService" interface="com.lkl.hole.facade.service.CommentService"/>
 </beans>

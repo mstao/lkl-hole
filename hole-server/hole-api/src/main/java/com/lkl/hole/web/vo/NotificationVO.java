@@ -1,18 +1,17 @@
-package com.lkl.hole.facade.model;
+package com.lkl.hole.web.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @Author: mingshan
- * @Date: Created in 15:39 2018/5/13
+ * @Date: Created in 17:58 2018/5/14
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Notification implements Serializable {
+public class NotificationVO implements Serializable {
     private Long nid;
     private Long cid;
     private Long bid;
@@ -20,10 +19,9 @@ public class Notification implements Serializable {
     private String to;
     private String content;
     private Boolean isUnread;
-    private Date gmtCreate;
-    private Date gmtModified;
+    private String time;
 
-    private User user;
+    private UserVO user;
 
     public Long getNid() {
         return nid;
@@ -81,33 +79,25 @@ public class Notification implements Serializable {
         isUnread = unread;
     }
 
-    public User getUser() {
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public UserVO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserVO user) {
         this.user = user;
-    }
-
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public Date getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
     }
 
     @Override
     public String toString() {
-        return "Notification{" +
+        return "NotificationVO{" +
                 "nid=" + nid +
                 ", cid=" + cid +
                 ", bid=" + bid +
@@ -115,8 +105,7 @@ public class Notification implements Serializable {
                 ", to='" + to + '\'' +
                 ", content='" + content + '\'' +
                 ", isUnread=" + isUnread +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
+                ", time='" + time + '\'' +
                 ", user=" + user +
                 '}';
     }

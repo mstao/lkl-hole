@@ -15,23 +15,28 @@
     </resultMap>
 
     <select id="selectCount" resultType="java.lang.Integer">
-      SELECT COUNT(*) FROM  hole_notification where is_unread = 1
+      SELECT COUNT(*) FROM  hole_notification n where n.is_unread = 1 AND n.to = #{openId}
     </select>
 
-
     <select id="selectByPage" resultMap="notificationResultMap">
-        SELECT id nid,
+        SELECT id,
                cid,
                bid,
                from,
                to,
                content,
+               is_unread,
                gmt_create
-        FROM hole_notification
-        WHERE is_unread = 1
+        FROM hole_notification n
+        WHERE n.is_unread = 1 AND n.to = #{openId}
     </select>
 
-    <insert id="insert">
-        INSERT INTO hole_notification VALUES ()
+    <insert id="insert" parameterType="com.lkl.hole.facade.model.Notification">
+        INSERT INTO hole_notification(cid, bid, from, to, content, gmt_create, gmt_modified)
+        VALUES (#{cid}, #{bid}, #{from}, #{to}, #{content}, NOW(), NOW())
     </insert>
+
+    <update id="markRead" parameterType="java.lang.Long">
+        UPDATE hole_notification SET is_unread = 0 WHERE id = #{id} AND is_unread = 1
+    </update>
 </mapper>

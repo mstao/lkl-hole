@@ -5,7 +5,7 @@
 
 <mapper namespace="com.lkl.hole.service.dao.LocationDao">
 
-    <insert id="insert">
+    <insert id="insert" parameterType="com.lkl.hole.facade.model.Location">
         INSERT INTO hole_location(bid, location_name, latitude, longitude)
         VALUES(#{bid}, #{locationName}, #{latitude}, #{longitude})
     </insert>

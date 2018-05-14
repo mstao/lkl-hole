@@ -1,36 +1,31 @@
-package com.lkl.hole.facade.model;
+package com.lkl.hole.web.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * @Author: mingshan
- * @Date: Created in 15:38 2018/5/13
+ * @Date: Created in 10:33 2018/5/14
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Blog implements Serializable {
+public class BlogsVO implements Serializable {
     private Long id;
-    private Long uid;
     private String text;
     private String device;
-    private Date gmtCreate;
     private Boolean isFixed;
     private Boolean like;
     private Integer likeNum;
     private Integer commentNum;
     private Boolean isAnonymous;
-    private Boolean isDeleted;
+    private String time;
 
-    private List<Image> images;
-    private Location location;
-    private User user;
-    private List<Comment> comments;
+    private String[] images;
+    private LocationVO location;
+    private UserVO userVO;
 
     public Long getId() {
         return id;
@@ -38,14 +33,6 @@ public class Blog implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getUid() {
-        return uid;
-    }
-
-    public void setUid(Long uid) {
-        this.uid = uid;
     }
 
     public String getText() {
@@ -62,14 +49,6 @@ public class Blog implements Serializable {
 
     public void setDevice(String device) {
         this.device = device;
-    }
-
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
     }
 
     public Boolean getFixed() {
@@ -112,64 +91,53 @@ public class Blog implements Serializable {
         isAnonymous = anonymous;
     }
 
-    public Boolean getDeleted() {
-        return isDeleted;
+    public String getTime() {
+        return time;
     }
 
-    public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public List<Image> getImages() {
+    public String[] getImages() {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(String[] images) {
         this.images = images;
     }
 
-    public Location getLocation() {
+    public LocationVO getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(LocationVO location) {
         this.location = location;
     }
 
-    public User getUser() {
-        return user;
+    public UserVO getUserVO() {
+        return userVO;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setUserVO(UserVO userVO) {
+        this.userVO = userVO;
     }
 
     @Override
     public String toString() {
-        return "Blog{" +
+        return "BlogsVO{" +
                 "id=" + id +
-                ", uid=" + uid +
                 ", text='" + text + '\'' +
                 ", device='" + device + '\'' +
-                ", gmtCreate=" + gmtCreate +
                 ", isFixed=" + isFixed +
                 ", like=" + like +
                 ", likeNum=" + likeNum +
                 ", commentNum=" + commentNum +
                 ", isAnonymous=" + isAnonymous +
-                ", isDeleted=" + isDeleted +
-                ", images=" + images +
+                ", time='" + time + '\'' +
+                ", images=" + Arrays.toString(images) +
                 ", location=" + location +
-                ", user=" + user +
-                ", comments=" + comments +
+                ", userVO=" + userVO +
                 '}';
     }
 }

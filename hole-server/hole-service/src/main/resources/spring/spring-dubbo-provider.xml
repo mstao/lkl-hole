@@ -14,8 +14,14 @@
     <bean id="wxService" class="com.lkl.hole.service.impl.WxServiceImpl"/>
     <bean id="userService" class="com.lkl.hole.service.impl.UserServiceImpl"/>
     <bean id="redisTokenService" class="com.lkl.hole.service.impl.RedisTokenServiceImpl"/>
+    <bean id="blogService" class="com.lkl.hole.service.impl.BlogServiceImpl"/>
+    <bean id="commentService" class="com.lkl.hole.service.impl.CommentServiceImpl"/>
+    <bean id="notificationService" class="com.lkl.hole.service.impl.NotificationServiceImpl"/>
 
     <dubbo:service interface="com.lkl.hole.facade.service.WxService" ref="wxService"/>
     <dubbo:service interface="com.lkl.hole.facade.service.UserService" ref="userService"/>
     <dubbo:service interface="com.lkl.hole.facade.service.RedisTokenService" ref="redisTokenService"/>
+    <dubbo:service interface="com.lkl.hole.facade.service.BlogService" ref="blogService"/>
+    <dubbo:service interface="com.lkl.hole.facade.service.CommentService" ref="commentService"/>
+    <dubbo:service interface="com.lkl.hole.facade.service.NotificationService" ref="notificationService"/>
 </beans>

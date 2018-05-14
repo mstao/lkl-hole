@@ -18,7 +18,7 @@ public interface CommentService {
     /**
      * 删除评论
      *
-     * @param cid
+     * @param id
      */
-    void delete(Long cid);
+    void delete(Long id);
 }

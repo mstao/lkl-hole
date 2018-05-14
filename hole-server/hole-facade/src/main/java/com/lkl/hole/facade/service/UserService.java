@@ -17,6 +17,14 @@ public interface UserService {
     User findByOpenId(String openid);
 
     /**
+     * 根据主键查找用户
+     *
+     * @param id
+     * @return
+     */
+    User findById(Long id);
+
+    /**
      * 更新用户信息
      *
      * @param user

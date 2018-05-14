@@ -10,6 +10,8 @@ import java.util.Date;
  * @Author: mingshan
  * @Date: Created in 15:40 2018/5/13
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Image implements Serializable {
     private Long id;
     private Long bid;

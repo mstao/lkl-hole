@@ -13,7 +13,15 @@ public interface UserDao {
      * @param openid
      * @return
      */
-    User findByOpenId(String openid);
+    User selectByOpenId(String openid);
+
+    /**
+     * 根据主键id查找user
+     *
+     * @param id
+     * @return
+     */
+    User selectByPrimaryKey(Long id);
 
     /**
      * 更新用户信息

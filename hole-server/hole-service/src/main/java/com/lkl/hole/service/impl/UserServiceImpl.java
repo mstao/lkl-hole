@@ -21,12 +21,18 @@ import java.security.InvalidAlgorithmParameterException;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserDao userDao;
 
     @Override
     public User findByOpenId(String openid) {
-        return userDao.findByOpenId(openid);
+        return userDao.selectByOpenId(openid);
+    }
+
+    @Override
+    public User findById(Long id) {
+        return userDao.selectByPrimaryKey(id);
     }
 
     @Override

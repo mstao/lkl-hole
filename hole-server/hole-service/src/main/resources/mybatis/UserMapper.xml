@@ -38,8 +38,12 @@
 
 
     <!-- 根据id获取用户信息 -->
-    <select id="findByOpenId"  resultMap="userResultMap">
+    <select id="selectByOpenId"  resultMap="userResultMap">
         select id, <include refid="userColumns"/> from hole_user where openid = #{openid}
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="userResultMap">
+        select id, <include refid="userColumns"/> from hole_user where id= #{id}
     </select>
 
     <insert id="insert" parameterType="com.lkl.hole.facade.model.User" useGeneratedKeys="true" keyProperty="id">
