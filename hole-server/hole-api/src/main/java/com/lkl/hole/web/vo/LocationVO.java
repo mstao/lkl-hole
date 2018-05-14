@@ -12,6 +12,8 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LocationVO implements Serializable {
+    private static final long serialVersionUID = -716356889371535956L;
+
     private Long bid;
     private String locationName;
     private String latitude;

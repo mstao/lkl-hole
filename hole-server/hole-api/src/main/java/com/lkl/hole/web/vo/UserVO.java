@@ -12,6 +12,8 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserVO implements Serializable {
+    private static final long serialVersionUID = 8620200595989205317L;
+
     private Long uid;
     private String openid;
     private String avatar;

@@ -15,6 +15,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Blog implements Serializable {
+    private static final long serialVersionUID = 8774038020085658304L;
+
     private Long id;
     private Long uid;
     private String text;

@@ -1,5 +1,6 @@
 package com.lkl.hole.web.vo;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,7 +8,9 @@ import java.util.List;
  * @Author: mingshan
  * @Date: Created in 14:43 2018/5/14
  */
-public class BlogVO {
+public class BlogVO implements Serializable {
+    private static final long serialVersionUID = -3761938885307323024L;
+
     private Long id;
     private String text;
     private String device;

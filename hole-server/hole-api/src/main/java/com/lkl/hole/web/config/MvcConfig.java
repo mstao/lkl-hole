@@ -1,5 +1,7 @@
 package com.lkl.hole.web.config;
 
+import com.lkl.hole.web.authentication.interceptor.AuthorizationInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -21,8 +23,12 @@ import java.util.List;
 @ComponentScan(basePackages = {"com.lkl.hole.web.controller"})
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
+    @Autowired
+    private AuthorizationInterceptor authorizationInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(authorizationInterceptor);
     }
 
     @Override

@@ -13,6 +13,8 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment implements Serializable {
+    private static final long serialVersionUID = -8876852195019515024L;
+
     private Long id;
     private Long bid;
     private Long uid;

@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @Date: Created in 16:11 2018/5/14
  */
 public class NotificationCountVO implements Serializable {
+    private static final long serialVersionUID = 274683668833262711L;
     private int unreadMessagesCount;
 
     public int getUnreadMessagesCount() {

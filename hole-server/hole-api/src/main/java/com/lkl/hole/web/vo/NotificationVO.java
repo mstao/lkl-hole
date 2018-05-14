@@ -12,6 +12,8 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NotificationVO implements Serializable {
+    private static final long serialVersionUID = 8485647418129359320L;
+
     private Long nid;
     private Long cid;
     private Long bid;

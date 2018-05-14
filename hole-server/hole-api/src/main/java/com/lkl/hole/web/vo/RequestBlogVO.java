@@ -13,6 +13,8 @@ import java.util.Arrays;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RequestBlogVO implements Serializable {
+    private static final long serialVersionUID = 457570541281436716L;
+
     private String content;
     private String device;
     private String[] images;

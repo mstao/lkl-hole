@@ -13,6 +13,8 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Notification implements Serializable {
+    private static final long serialVersionUID = 8468753303209341704L;
+
     private Long nid;
     private Long cid;
     private Long bid;

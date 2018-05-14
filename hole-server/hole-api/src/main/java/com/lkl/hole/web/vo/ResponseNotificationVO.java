@@ -8,7 +8,7 @@ import java.util.List;
  * @Date: Created in 17:24 2018/5/14
  */
 public class ResponseNotificationVO implements Serializable {
-
+    private static final long serialVersionUID = 8708625333815579602L;
     private List<NotificationVO> unreadMessages;
     private Long unreadMessagesCount;
 

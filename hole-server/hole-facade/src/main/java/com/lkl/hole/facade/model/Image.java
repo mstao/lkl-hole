@@ -13,6 +13,8 @@ import java.util.Date;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Image implements Serializable {
+    private static final long serialVersionUID = 1161636951145221176L;
+
     private Long id;
     private Long bid;
     private String url;

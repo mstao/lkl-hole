@@ -10,5 +10,6 @@ import java.io.Serializable;
  */
 @Data
 public class UploadImageVO implements Serializable {
+    private static final long serialVersionUID = 1799102438448074560L;
     private String url;
 }

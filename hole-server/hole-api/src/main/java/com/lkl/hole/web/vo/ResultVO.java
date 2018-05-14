@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ResultVO implements Serializable {
+    private static final long serialVersionUID = -5266331007373419307L;
     private int errcode;
     private String errmsg;
     private Object data;

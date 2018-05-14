@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
+    private static final long serialVersionUID = -7717937054954013585L;
+
     private Long uid;
     private String openId;
     private String avatarUrl;

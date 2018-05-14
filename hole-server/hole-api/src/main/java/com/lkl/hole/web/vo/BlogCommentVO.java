@@ -12,6 +12,8 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BlogCommentVO implements Serializable {
+    private static final long serialVersionUID = 1973996778976361637L;
+
     private Long uid;
     private Long cid;
     private String openid;

@@ -69,7 +69,7 @@ public class NotificationController extends BaseController {
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
                     paramType = "header")
     })
-    public ResponseEntity<ResultVO> getMessages(@RequestParam Integer page, HttpServletRequest request) {
+    public ResponseEntity<ResultVO> getMessages(@RequestParam(name = "page", defaultValue = "1") Integer page, HttpServletRequest request) {
         String openId = (String) request.getAttribute("openId");
         User user = userService.findByOpenId(openId);
 
