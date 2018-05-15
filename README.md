@@ -32,7 +32,7 @@ java -jar hole-service.jar &
 对于Linux平台开启Dubbo服务方式，推荐编写shell脚本来开启服务。
 
 ## 开源协议
-查看 [LICENSE](https://github.com/jas0ncn/szushudong/blob/master/LICENSE)
+查看 [LICENSE](https://github.com/mstao/lkl-hole/blob/master/LICENSE)
 
 
 
