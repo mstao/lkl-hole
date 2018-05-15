@@ -77,7 +77,7 @@ public class BlogController extends BaseController {
                     for (Image image : images) {
                         urls.add(image.getUrl());
                     }
-                    blogsVO.setImages((String[]) urls.toArray());
+                    blogsVO.setImages(urls.toArray(new String[images.size()]));
                 }
 
                 // 获取location
@@ -134,7 +134,7 @@ public class BlogController extends BaseController {
                 for (Image image : images) {
                     urls.add(image.getUrl());
                 }
-                blogVO.setImages((String[]) urls.toArray());
+                blogVO.setImages(urls.toArray(new String[images.size()]));
             }
 
             // 获取location
@@ -248,9 +248,12 @@ public class BlogController extends BaseController {
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
                     paramType = "header")
     })
-    public ResponseEntity<ResultVO> add(@RequestBody RequestBlogVO requestBlogVO) {
+    public ResponseEntity<ResultVO> add(@RequestBody RequestBlogVO requestBlogVO, HttpServletRequest request) {
+        String openId = (String) request.getAttribute("openId");
+        User user = userService.findByOpenId(openId);
 
         Blog blog = new Blog();
+        blog.setUid(user.getUid());
         blog.setText(requestBlogVO.getContent());
         blog.setDevice(requestBlogVO.getDevice());
         blog.setAnonymous(requestBlogVO.getAnonymous());

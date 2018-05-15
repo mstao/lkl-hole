@@ -2,6 +2,7 @@ package com.lkl.hole.web.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
@@ -20,10 +21,13 @@ public class BlogCommentVO implements Serializable {
     private String content;
     private String avatar;
     private String nickname;
-    private boolean isAnonymous;
+    @JsonProperty("isAnonymous")
+    private Boolean anonymous;
     private String time;
-    private Boolean isAdmin;
-    private Boolean isAuthor;
+    @JsonProperty("isAdmin")
+    private Boolean admin;
+    @JsonProperty("isAuthor")
+    private Boolean author;
 
     public Long getUid() {
         return uid;
@@ -73,12 +77,12 @@ public class BlogCommentVO implements Serializable {
         this.nickname = nickname;
     }
 
-    public boolean isAnonymous() {
-        return isAnonymous;
+    public Boolean getAnonymous() {
+        return anonymous;
     }
 
-    public void setAnonymous(boolean anonymous) {
-        isAnonymous = anonymous;
+    public void setAnonymous(Boolean anonymous) {
+        this.anonymous = anonymous;
     }
 
     public String getTime() {
@@ -90,19 +94,19 @@ public class BlogCommentVO implements Serializable {
     }
 
     public Boolean getAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(Boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     public Boolean getAuthor() {
-        return isAuthor;
+        return author;
     }
 
     public void setAuthor(Boolean author) {
-        isAuthor = author;
+        this.author = author;
     }
 
     @Override
@@ -114,10 +118,10 @@ public class BlogCommentVO implements Serializable {
                 ", content='" + content + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", nickname='" + nickname + '\'' +
-                ", isAnonymous=" + isAnonymous +
+                ", anonymous=" + anonymous +
                 ", time='" + time + '\'' +
-                ", isAdmin=" + isAdmin +
-                ", isAuthor=" + isAuthor +
+                ", admin=" + admin +
+                ", author=" + author +
                 '}';
     }
 }

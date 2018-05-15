@@ -2,6 +2,7 @@ package com.lkl.hole.web.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
@@ -19,9 +20,12 @@ public class UserVO implements Serializable {
     private String avatar;
     private String nickname;
     private Integer gender;
-    private Boolean isAdmin;
-    private Boolean isAuthor;
-    private Boolean isVerified;
+    @JsonProperty("isAdmin")
+    private Boolean admin;
+    @JsonProperty("isAuthor")
+    private Boolean author;
+    @JsonProperty("isVerified")
+    private Boolean verified;
 
     public Long getUid() {
         return uid;
@@ -64,27 +68,27 @@ public class UserVO implements Serializable {
     }
 
     public Boolean getAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(Boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     public Boolean getAuthor() {
-        return isAuthor;
+        return author;
     }
 
     public void setAuthor(Boolean author) {
-        isAuthor = author;
+        this.author = author;
     }
 
     public Boolean getVerified() {
-        return isVerified;
+        return verified;
     }
 
     public void setVerified(Boolean verified) {
-        isVerified = verified;
+        this.verified = verified;
     }
 
     @Override
@@ -95,9 +99,9 @@ public class UserVO implements Serializable {
                 ", avatar='" + avatar + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", gender=" + gender +
-                ", isAdmin=" + isAdmin +
-                ", isAuthor=" + isAuthor +
-                ", isVerified=" + isVerified +
+                ", admin=" + admin +
+                ", author=" + author +
+                ", verified=" + verified +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.lkl.hole.web.vo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,20 +12,21 @@ import java.io.Serializable;
  */
 public class ConfigVO implements Serializable {
     private static final long serialVersionUID = 396778757646180593L;
-    private boolean isTest;
+    @JsonProperty("isTest")
+    private Boolean test;
 
-    public void setIsTest(boolean isTest) {
-        this.isTest = isTest;
+    public Boolean getTest() {
+        return test;
     }
 
-    public boolean getIsTest() {
-        return this.isTest;
+    public void setTest(Boolean test) {
+        this.test = test;
     }
 
     @Override
     public String toString() {
         return "ConfigVO{" +
-                "isTest=" + isTest +
+                "test=" + test +
                 '}';
     }
 }

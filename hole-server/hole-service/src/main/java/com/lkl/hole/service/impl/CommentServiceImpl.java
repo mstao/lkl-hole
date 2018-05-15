@@ -19,7 +19,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Long add(Comment comment) {
         commentDao.insert(comment);
-        return commentDao.insert(comment);
+        return comment.getId();
     }
 
     @Override

@@ -22,8 +22,8 @@
         SELECT id,
                cid,
                bid,
-               from,
-               to,
+               `from`,
+               `to`
                content,
                is_unread,
                gmt_create
@@ -32,8 +32,8 @@
     </select>
 
     <insert id="insert" parameterType="com.lkl.hole.facade.model.Notification">
-        INSERT INTO hole_notification(cid, bid, from, to, content, gmt_create, gmt_modified)
-        VALUES (#{cid}, #{bid}, #{from}, #{to}, #{content}, NOW(), NOW())
+        INSERT INTO hole_notification(cid, bid, `from`, `to`, content, gmt_create, gmt_modified)
+        VALUES (#{cid}, #{bid}, #{from}, #{to,jdbcType=VARCHAR}, #{content}, NOW(), NOW())
     </insert>
 
     <update id="markRead" parameterType="java.lang.Long">

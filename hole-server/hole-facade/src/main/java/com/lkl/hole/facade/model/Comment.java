@@ -19,8 +19,8 @@ public class Comment implements Serializable {
     private Long bid;
     private Long uid;
     private String content;
-    private Boolean isAnonymous;
-    private Boolean isDeleted;
+    private Boolean anonymous;
+    private Boolean deleted;
     private Date gmtCreate;
     private Date gmtModified;
 
@@ -59,11 +59,19 @@ public class Comment implements Serializable {
     }
 
     public Boolean getAnonymous() {
-        return isAnonymous;
+        return anonymous;
     }
 
     public void setAnonymous(Boolean anonymous) {
-        isAnonymous = anonymous;
+        this.anonymous = anonymous;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Date getGmtCreate() {
@@ -90,14 +98,6 @@ public class Comment implements Serializable {
         this.user = user;
     }
 
-    public Boolean getDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
-    }
-
     @Override
     public String toString() {
         return "Comment{" +
@@ -105,8 +105,8 @@ public class Comment implements Serializable {
                 ", bid=" + bid +
                 ", uid=" + uid +
                 ", content='" + content + '\'' +
-                ", isAnonymous=" + isAnonymous +
-                ", isDeleted=" + isDeleted +
+                ", anonymous=" + anonymous +
+                ", deleted=" + deleted +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
                 ", user=" + user +

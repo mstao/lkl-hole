@@ -57,14 +57,20 @@ public class BlogServiceImpl implements BlogService {
     public Long add(Blog blog) {
         blogDao.insert(blog);
         Long bid = blog.getId();
+        System.out.println("Add blog; bid = " + bid);
         Location location = blog.getLocation();
-        location.setBid(bid);
-        locationDao.insert(location);
-        List<Image> images = blog.getImages();
-        for (Image image : images) {
-            image.setBid(bid);
+        if (location != null) {
+            location.setBid(bid);
+            locationDao.insert(location);
         }
-        imageDao.insertBatch(images);
+        List<Image> images = blog.getImages();
+        if (images != null) {
+            for (Image image : images) {
+                image.setBid(bid);
+            }
+            imageDao.insertBatch(images);
+        }
+
         return bid;
     }
 }

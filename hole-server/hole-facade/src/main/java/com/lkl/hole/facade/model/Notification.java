@@ -21,7 +21,7 @@ public class Notification implements Serializable {
     private String from;
     private String to;
     private String content;
-    private Boolean isUnread;
+    private Boolean unread;
     private Date gmtCreate;
     private Date gmtModified;
 
@@ -76,19 +76,11 @@ public class Notification implements Serializable {
     }
 
     public Boolean getUnread() {
-        return isUnread;
+        return unread;
     }
 
     public void setUnread(Boolean unread) {
-        isUnread = unread;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+        this.unread = unread;
     }
 
     public Date getGmtCreate() {
@@ -107,19 +99,11 @@ public class Notification implements Serializable {
         this.gmtModified = gmtModified;
     }
 
-    @Override
-    public String toString() {
-        return "Notification{" +
-                "nid=" + nid +
-                ", cid=" + cid +
-                ", bid=" + bid +
-                ", from='" + from + '\'' +
-                ", to='" + to + '\'' +
-                ", content='" + content + '\'' +
-                ", isUnread=" + isUnread +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                ", user=" + user +
-                '}';
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

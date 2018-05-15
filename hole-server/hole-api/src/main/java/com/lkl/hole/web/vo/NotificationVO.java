@@ -2,6 +2,7 @@ package com.lkl.hole.web.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
@@ -20,7 +21,8 @@ public class NotificationVO implements Serializable {
     private String from;
     private String to;
     private String content;
-    private Boolean isUnread;
+    @JsonProperty("isUnread")
+    private Boolean unread;
     private String time;
 
     private UserVO user;
@@ -74,11 +76,11 @@ public class NotificationVO implements Serializable {
     }
 
     public Boolean getUnread() {
-        return isUnread;
+        return unread;
     }
 
     public void setUnread(Boolean unread) {
-        isUnread = unread;
+        this.unread = unread;
     }
 
     public String getTime() {
@@ -106,7 +108,7 @@ public class NotificationVO implements Serializable {
                 ", from='" + from + '\'' +
                 ", to='" + to + '\'' +
                 ", content='" + content + '\'' +
-                ", isUnread=" + isUnread +
+                ", unread=" + unread +
                 ", time='" + time + '\'' +
                 ", user=" + user +
                 '}';

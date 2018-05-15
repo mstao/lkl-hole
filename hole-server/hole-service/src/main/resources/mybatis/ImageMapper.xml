@@ -9,7 +9,7 @@
         INSERT INTO hole_image
         (bid, url, gmt_create, gmt_modified)
         VALUES
-        <foreach collection ="images" item="image" separator =",">
+        <foreach collection ="list" item="image" separator =",">
             (#{image.bid}, #{image.url}, NOW(), NOW())
         </foreach >
 

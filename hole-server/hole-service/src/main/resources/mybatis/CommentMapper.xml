@@ -7,7 +7,7 @@
 
     <insert id="insert" parameterType="com.lkl.hole.facade.model.Comment" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO hole_comment (uid, bid, content, is_anonymous, gmt_create, gmt_modified)
-        VALUES (#{uid}, #{bid}, #{content}, #{isAnonymous}, NOW(), NOW())
+        VALUES (#{uid}, #{bid}, #{content}, #{anonymous}, NOW(), NOW())
     </insert>
 
     <update id="delete" parameterType="java.lang.Long">

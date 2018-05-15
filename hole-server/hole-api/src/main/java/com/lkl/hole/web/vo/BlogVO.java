@@ -1,5 +1,7 @@
 package com.lkl.hole.web.vo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -14,11 +16,13 @@ public class BlogVO implements Serializable {
     private Long id;
     private String text;
     private String device;
-    private Boolean isFixed;
+    @JsonProperty("isFixed")
+    private Boolean fixed;
     private Boolean like;
     private Integer likeNum;
     private Integer commentNum;
-    private Boolean isAnonymous;
+    @JsonProperty("isAnonymous")
+    private Boolean anonymous;
     private String time;
 
     private String[] images;
@@ -51,11 +55,11 @@ public class BlogVO implements Serializable {
     }
 
     public Boolean getFixed() {
-        return isFixed;
+        return fixed;
     }
 
     public void setFixed(Boolean fixed) {
-        isFixed = fixed;
+        this.fixed = fixed;
     }
 
     public Boolean getLike() {
@@ -83,11 +87,11 @@ public class BlogVO implements Serializable {
     }
 
     public Boolean getAnonymous() {
-        return isAnonymous;
+        return anonymous;
     }
 
     public void setAnonymous(Boolean anonymous) {
-        isAnonymous = anonymous;
+        this.anonymous = anonymous;
     }
 
     public String getTime() {
@@ -136,11 +140,11 @@ public class BlogVO implements Serializable {
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", device='" + device + '\'' +
-                ", isFixed=" + isFixed +
+                ", fixed=" + fixed +
                 ", like=" + like +
                 ", likeNum=" + likeNum +
                 ", commentNum=" + commentNum +
-                ", isAnonymous=" + isAnonymous +
+                ", anonymous=" + anonymous +
                 ", time='" + time + '\'' +
                 ", images=" + Arrays.toString(images) +
                 ", location=" + location +

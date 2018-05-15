@@ -22,12 +22,12 @@ public class Blog implements Serializable {
     private String text;
     private String device;
     private Date gmtCreate;
-    private Boolean isFixed;
+    private Boolean fixed;
     private Boolean like;
     private Integer likeNum;
     private Integer commentNum;
-    private Boolean isAnonymous;
-    private Boolean isDeleted;
+    private Boolean anonymous;
+    private Boolean deleted;
 
     private List<Image> images;
     private Location location;
@@ -75,11 +75,11 @@ public class Blog implements Serializable {
     }
 
     public Boolean getFixed() {
-        return isFixed;
+        return fixed;
     }
 
     public void setFixed(Boolean fixed) {
-        isFixed = fixed;
+        this.fixed = fixed;
     }
 
     public Boolean getLike() {
@@ -107,19 +107,19 @@ public class Blog implements Serializable {
     }
 
     public Boolean getAnonymous() {
-        return isAnonymous;
+        return anonymous;
     }
 
     public void setAnonymous(Boolean anonymous) {
-        isAnonymous = anonymous;
+        this.anonymous = anonymous;
     }
 
     public Boolean getDeleted() {
-        return isDeleted;
+        return deleted;
     }
 
     public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
+        this.deleted = deleted;
     }
 
     public List<Image> getImages() {
@@ -162,12 +162,12 @@ public class Blog implements Serializable {
                 ", text='" + text + '\'' +
                 ", device='" + device + '\'' +
                 ", gmtCreate=" + gmtCreate +
-                ", isFixed=" + isFixed +
+                ", fixed=" + fixed +
                 ", like=" + like +
                 ", likeNum=" + likeNum +
                 ", commentNum=" + commentNum +
-                ", isAnonymous=" + isAnonymous +
-                ", isDeleted=" + isDeleted +
+                ", anonymous=" + anonymous +
+                ", deleted=" + deleted +
                 ", images=" + images +
                 ", location=" + location +
                 ", user=" + user +

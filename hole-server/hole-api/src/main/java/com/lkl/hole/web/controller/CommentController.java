@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,23 +61,23 @@ public class CommentController extends BaseController {
         comment.setBid(commentVO.getBid());
         comment.setContent(commentVO.getContent());
         comment.setAnonymous(commentVO.getAnonymous());
-        commentService.add(comment);
-
-        Long cid = comment.getId();
+        Long cid = commentService.add(comment);
 
         // 通知
         String replyTo = commentVO.getReplyTo();
-        if (replyTo != null) {
-            Notification notification = new Notification();
-            User replyUser = userService.findByOpenId(replyTo);
+        Notification notification = new Notification();
 
-            notification.setBid(commentVO.getBid());
-            notification.setCid(cid);
+        notification.setBid(commentVO.getBid());
+        notification.setCid(cid);
+        if (StringUtils.isEmpty(replyTo)) {
+            notification.setContent(commentVO.getContent());
+        } else {
+            User replyUser = userService.findByOpenId(replyTo);
             notification.setContent("回复 " + replyUser.getNickName() + ": " + commentVO.getContent());
-            notification.setFrom(openId);
             notification.setTo(replyTo);
-            notificationService.add(notification);
         }
+        notification.setFrom(openId);
+        notificationService.add(notification);
 
         EmptyVO vo = new EmptyVO();
         ResultVO resultVO = new ResultVO(0, "", vo);

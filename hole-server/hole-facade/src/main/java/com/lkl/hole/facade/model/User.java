@@ -20,9 +20,9 @@ public class User implements Serializable {
     private String nickName;
     private Integer gender;
     private String unionId;
-    private Boolean isAdmin;
-    private Boolean isAuthor;
-    private Boolean isVerified;
+    private Boolean admin;
+    private Boolean author;
+    private Boolean verified;
 
     public Long getUid() {
         return uid;
@@ -73,27 +73,27 @@ public class User implements Serializable {
     }
 
     public Boolean getAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(Boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     public Boolean getAuthor() {
-        return isAuthor;
+        return author;
     }
 
     public void setAuthor(Boolean author) {
-        isAuthor = author;
+        this.author = author;
     }
 
     public Boolean getVerified() {
-        return isVerified;
+        return verified;
     }
 
     public void setVerified(Boolean verified) {
-        isVerified = verified;
+        this.verified = verified;
     }
 
     @Override
@@ -105,9 +105,9 @@ public class User implements Serializable {
                 ", nickName='" + nickName + '\'' +
                 ", gender=" + gender +
                 ", unionId='" + unionId + '\'' +
-                ", isAdmin=" + isAdmin +
-                ", isAuthor=" + isAuthor +
-                ", isVerified=" + isVerified +
+                ", admin=" + admin +
+                ", author=" + author +
+                ", verified=" + verified +
                 '}';
     }
 }

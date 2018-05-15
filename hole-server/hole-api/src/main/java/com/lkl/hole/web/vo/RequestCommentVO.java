@@ -2,6 +2,7 @@ package com.lkl.hole.web.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
@@ -12,9 +13,12 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RequestCommentVO implements Serializable {
+    private static final long serialVersionUID = 8299294791428530526L;
+
     private Long bid;
     private String content;
-    private Boolean isAnonymous;
+    @JsonProperty("isAnonymous")
+    private Boolean anonymous;
     private String replyTo;
 
     public Long getBid() {
@@ -34,11 +38,11 @@ public class RequestCommentVO implements Serializable {
     }
 
     public Boolean getAnonymous() {
-        return isAnonymous;
+        return anonymous;
     }
 
     public void setAnonymous(Boolean anonymous) {
-        isAnonymous = anonymous;
+        this.anonymous = anonymous;
     }
 
     public String getReplyTo() {
@@ -54,7 +58,7 @@ public class RequestCommentVO implements Serializable {
         return "RequestCommentVO{" +
                 "bid=" + bid +
                 ", content='" + content + '\'' +
-                ", isAnonymous=" + isAnonymous +
+                ", anonymous=" + anonymous +
                 ", replyTo='" + replyTo + '\'' +
                 '}';
     }

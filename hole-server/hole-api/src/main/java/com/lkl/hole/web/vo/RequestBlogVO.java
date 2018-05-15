@@ -2,6 +2,7 @@ package com.lkl.hole.web.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -18,7 +19,8 @@ public class RequestBlogVO implements Serializable {
     private String content;
     private String device;
     private String[] images;
-    private Boolean isAnonymous;
+    @JsonProperty("isAnonymous")
+    private Boolean anonymous;
     private String location;
     private String latitude;
     private String longitude;
@@ -48,11 +50,11 @@ public class RequestBlogVO implements Serializable {
     }
 
     public Boolean getAnonymous() {
-        return isAnonymous;
+        return anonymous;
     }
 
     public void setAnonymous(Boolean anonymous) {
-        isAnonymous = anonymous;
+        this.anonymous = anonymous;
     }
 
     public String getLocation() {
@@ -85,7 +87,7 @@ public class RequestBlogVO implements Serializable {
                 "content='" + content + '\'' +
                 ", device='" + device + '\'' +
                 ", images=" + Arrays.toString(images) +
-                ", isAnonymous=" + isAnonymous +
+                ", anonymous=" + anonymous +
                 ", location='" + location + '\'' +
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +

@@ -17,6 +17,7 @@
         <result column="like_num" property="likeNum"/>
         <result column="comment_num" property="commentNum"/>
         <result column="gmt_create" property="gmtCreate"/>
+        <result column="is_anonymous" property="anonymous"/>
 
         <!-- Blog 与 User 映射 -->
         <association property="user" javaType="com.lkl.hole.facade.model.User">
@@ -46,6 +47,9 @@
         <collection property="comments" ofType="com.lkl.hole.facade.model.Comment">
             <result column="cid" property="id"/>
             <result column="c_uid" property="uid"/>
+            <result column="c_content" property="content"/>
+            <result column="c_is_anonymous" property="anonymous"/>
+            <result column="c_gmt_create" property="gmtCreate"/>
 
             <!-- Comment 与 user 映射 -->
             <association property="user" javaType="com.lkl.hole.facade.model.User">
@@ -72,6 +76,7 @@
         <result column="like_num" property="likeNum"/>
         <result column="comment_num" property="commentNum"/>
         <result column="gmt_create" property="gmtCreate"/>
+        <result column="is_anonymous" property="anonymous"/>
 
         <!-- Blog 与 User 映射 -->
         <association property="user" javaType="com.lkl.hole.facade.model.User">
@@ -108,6 +113,7 @@
                b.like_num,
                b.comment_num,
                b.gmt_create,
+               b.is_anonymous,
                lo.location_name,
                lo.latitude,
                lo.longitude,
@@ -121,31 +127,33 @@
                u.is_verified b_is_verified,
                i.url,
                co.cid,
-               co.content,
-               co.is_anonymous,
-               co.gmt_create,
-               co.c_openid,
-               co.c_avatar,
-               co.c_nickname,
-               co.c_gender,
-               co.c_is_admin,
-               co.c_is_author
+               co.uid c_uid,
+               co.content c_content,
+               co.is_anonymous c_is_anonymous,
+               co.gmt_create c_gmt_create,
+               co.openid c_openid,
+               co.avatar c_avatar,
+               co.nickname c_nickname,
+               co.gender c_gender,
+               co.is_admin c_is_admin,
+               co.is_author c_is_author
         FROM hole_blog b
         LEFT JOIN hole_location lo ON lo.bid = b.id
         LEFT JOIN hole_user u ON u.id = b.uid
         LEFT JOIN hole_image i ON i.bid = b.id
         LEFT JOIN (
           SELECT c.id cid,
+                 c.uid,
                  c.bid,
                  c.content,
                  c.is_anonymous,
                  c.gmt_create,
-                 u.openid c_openid,
-                 u.avatar c_avatar,
-                 u.nickname c_nickname,
-                 u.gender c_gender,
-                 u.is_admin c_is_admin,
-                 u.is_author c_is_author
+                 u.openid,
+                 u.avatar,
+                 u.nickname,
+                 u.gender,
+                 u.is_admin,
+                 u.is_author
           FROM hole_comment c
           LEFT JOIN hole_user u ON u.id = c.uid
           WHERE c.is_deleted = 0
@@ -162,6 +170,7 @@
                b.like_num,
                b.comment_num,
                b.gmt_create,
+               b.is_anonymous,
                lo.location_name,
                lo.latitude,
                lo.longitude,
@@ -183,7 +192,7 @@
 
     <insert id="insert" parameterType="com.lkl.hole.facade.model.Blog" useGeneratedKeys="true" keyProperty="id">
         insert into hole_blog(text, device, uid, is_anonymous, gmt_create, gmt_modified)
-        values (#{text}, #{device}, #{uid}, #{isAnonymous}, NOW(), NOW())
+        values (#{text}, #{device}, #{uid}, #{anonymous}, NOW(), NOW())
     </insert>
 
     <update id="update" parameterType="com.lkl.hole.facade.model.User">
