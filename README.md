@@ -31,6 +31,24 @@ java -jar hole-service.jar &
 
 对于Linux平台开启Dubbo服务方式，推荐编写shell脚本来开启服务。
 
+## 开发环境
+
+小程序开发环境请参考：
+
+https://github.com/mstao/lkl-hole/blob/master/hole-client/README.md
+
+后台开发环境：
+
+- JDK 1.8
+- MySQL 5.7
+- Redis 4.2
+- Zookeeper-3.4.10
+- Dubbo 2.6.0
+
+### Dubbo管控台安装配置
+
+本仓库包含编译好的Dubbo-Admin的war包，放在hole-res文件夹下，自行安装。
+
 ## 开源协议
 查看 [LICENSE](https://github.com/mstao/lkl-hole/blob/master/LICENSE)
 
