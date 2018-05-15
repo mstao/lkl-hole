@@ -204,7 +204,7 @@ public class BlogController extends BaseController {
     /**
      * 点赞
      *
-     * @param bid
+     * @param blogIdVO
      * @return
      */
     @RequestMapping(value = "/blog/like", method = RequestMethod.POST)
@@ -214,29 +214,30 @@ public class BlogController extends BaseController {
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
                     paramType = "header")
     })
-    public ResponseEntity<ResultVO> like(@RequestBody Long bid) {
-        blogService.increaseLikeNum(bid);
+    public ResponseEntity<ResultVO> like(@RequestBody BlogIdVO blogIdVO) {
+        blogService.increaseLikeNum(blogIdVO.getBid());
 
         EmptyVO vo = new EmptyVO();
         ResultVO resultVO = new ResultVO(0, "", vo);
         return new ResponseEntity<>(resultVO, HttpStatus.OK);
     }
 
+
     /**
      * 删除
      *
-     * @param bid
+     * @param blogIdVO
      * @return
      */
     @RequestMapping(value = "/blog/delete", method = RequestMethod.POST)
-    @ApiOperation(value="点赞", httpMethod="POST", notes="")
+    @ApiOperation(value="删除", httpMethod="POST", notes="")
     @Authorization
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
                     paramType = "header")
     })
-    public ResponseEntity<ResultVO> delete(@RequestBody Long bid) {
-        blogService.delete(bid);
+    public ResponseEntity<ResultVO> delete(@RequestBody BlogIdVO blogIdVO) {
+        blogService.delete(blogIdVO.getBid());
         EmptyVO vo = new EmptyVO();
         ResultVO resultVO = new ResultVO(0, "", vo);
         return new ResponseEntity<>(resultVO, HttpStatus.OK);
