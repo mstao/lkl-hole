@@ -7,9 +7,12 @@ package com.lkl.hole.web.config;
  */
 public class Constants {
 
-    /**
-     * 上传图片的服务器路径
-     */
-    public static final String UPLOAD_IMAGE_PATH = "/resources/uploads/images";
+    //----------------七牛--------------------
+    public static final String QINIU_ACCESS_KEY = "4x0PS30j9MP-q5bog1VKnDXZ0aMaxLA8l4PIV9ai";
 
+    public static final String QINIU_SECRET_KEY = "T3JX0edq22jn9Yqr2yttjQtg41rZtpLTaOAV55WW";
+
+    public static final String QINIU_UPLOAD_TOKEN = "images";
+
+    public static final String QINIU_UPLOAD_URL = "http://p8rape2j2.bkt.clouddn.com";
 }

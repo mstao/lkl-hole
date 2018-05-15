@@ -32,8 +32,8 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public PageInfo<Blog> findAll(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<Blog> blogs = blogDao.selectByPage(pageNum, pageSize);
+        PageHelper.startPage(pageNum, pageSize, "gmt_create desc");
+        List<Blog> blogs = blogDao.selectByPage();
         PageInfo<Blog> page = new PageInfo<>(blogs);
         return page;
     }

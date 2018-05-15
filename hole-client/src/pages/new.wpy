@@ -231,8 +231,8 @@ export default class NewBlog extends wepy.page {
               url: api.blog.imageUpload.url,
               filePath: v,
               name: 'file',
-              formData: {
-                _session: wepy.getStorageSync('_session')
+              header: {
+                'x-wechat-session': wepy.getStorageSync('_session')
               }
             })
 

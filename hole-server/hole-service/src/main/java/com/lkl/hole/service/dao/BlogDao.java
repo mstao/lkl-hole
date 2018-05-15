@@ -16,8 +16,7 @@ public interface BlogDao {
      *
      * @return
      */
-    List<Blog> selectByPage(@Param("pageNum") int pageNum,
-                            @Param("pageSize") int pageSize);
+    List<Blog> selectByPage();
 
     /**
      * 获取单条信息

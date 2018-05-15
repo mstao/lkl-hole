@@ -34,7 +34,7 @@
         <property name="mapperLocations" value="classpath:mybatis/**/*.xml" />
         <!-- 数据源 -->
         <property name="dataSource" ref="dataSource" />
-                <property name="plugins">
+        <property name="plugins">
             <array>
               <bean class="com.github.pagehelper.PageInterceptor">
                    <property name="properties">
@@ -42,10 +42,8 @@
                            helperDialect=mysql
                            reasonable=true
                            supportMethodsArguments=true
+                           params=count=countSql
                            autoRuntimeDialect=true
-                           rowBoundsWithCount=true
-                           PageRowBounds=true
-                           offsetAsPageNum=true
                        </value>
                    </property>
                </bean>
