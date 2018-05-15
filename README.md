@@ -35,7 +35,7 @@ java -jar hole-service.jar &
 
 小程序开发环境请参考：
 
-https://github.com/mstao/lkl-hole/blob/master/hole-client/README.md
+[点我，查看](https://github.com/mstao/lkl-hole/blob/master/hole-client/README.md)
 
 后台开发环境：
 
