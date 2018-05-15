@@ -60,7 +60,7 @@ public class BlogController extends BaseController {
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
                     paramType = "header")
     })
-    public ResponseEntity<ResultVO> getBlogs(@RequestParam(name = "page", defaultValue = "1") Integer page,
+    public ResponseEntity<ResultVO> getBlogs(@RequestParam(name = "page") Integer page,
                                              @RequestParam Integer version) {
         PageInfo<Blog> pageInfo = blogService.findAll(page, Pagination.PAGE_SIZE);
         List<Blog> blogs = pageInfo.getList();

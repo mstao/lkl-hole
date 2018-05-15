@@ -73,7 +73,7 @@ public class NotificationController extends BaseController {
         String openId = (String) request.getAttribute("openId");
         User user = userService.findByOpenId(openId);
 
-        PageInfo<Notification> pageInfo = notificationService.findAll(page, Pagination.PAGE_SIZE, openId);
+        PageInfo<Notification> pageInfo = notificationService.findAll(openId, page, Pagination.PAGE_SIZE);
         Long unreadMessagesCount = pageInfo.getTotal();
 
         List<Notification> notificationList = pageInfo.getList();

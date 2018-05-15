@@ -26,7 +26,9 @@ public interface NotificationDao {
      *
      * @return
      */
-    List<Notification> selectByPage(@Param("openId") String openId);
+    List<Notification> selectByPage(@Param("openId") String openId,
+                                    @Param("pageNum") int pageNum,
+                                    @Param("pageSize") int pageSize);
 
 
     /**

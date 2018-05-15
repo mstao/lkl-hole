@@ -1,6 +1,7 @@
 package com.lkl.hole.service.dao;
 
 import com.lkl.hole.facade.model.Blog;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,7 +16,8 @@ public interface BlogDao {
      *
      * @return
      */
-    List<Blog> selectByPage();
+    List<Blog> selectByPage(@Param("pageNum") int pageNum,
+                            @Param("pageSize") int pageSize);
 
     /**
      * 获取单条信息

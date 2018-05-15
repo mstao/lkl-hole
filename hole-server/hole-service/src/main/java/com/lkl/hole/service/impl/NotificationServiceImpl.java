@@ -27,9 +27,9 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public PageInfo<Notification> findAll(int pageNumber, int pageSize, String openId) {
-        PageHelper.startPage(pageNumber, pageSize);
-        List<Notification> notifications = notificationDao.selectByPage(openId);
+    public PageInfo<Notification> findAll(String openId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Notification> notifications = notificationDao.selectByPage(openId, pageNum, pageSize);
         PageInfo<Notification> page = new PageInfo<>(notifications);
         return page;
     }

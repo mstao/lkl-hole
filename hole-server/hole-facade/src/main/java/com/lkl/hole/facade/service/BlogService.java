@@ -12,11 +12,11 @@ public interface BlogService {
     /**
      * 分页获取数据
      *
-     * @param pageNumber
+     * @param pageNum
      * @param pageSize
      * @return
      */
-    PageInfo<Blog> findAll(int pageNumber, int pageSize);
+    PageInfo<Blog> findAll(int pageNum, int pageSize);
 
     /**
      * 获取单条信息

@@ -45,7 +45,7 @@
         <jedis.version>2.6.1</jedis.version>
         <lombok.version>1.16.6</lombok.version>
         <springfox-swagger-ui.version>2.6.1</springfox-swagger-ui.version>
-        <pagehelper.version>5.1.2</pagehelper.version>
+        <pagehelper.version>5.1.4</pagehelper.version>
         <dozer.version>5.5.1</dozer.version>
 
         <zookeeper.version>3.4.10</zookeeper.version>
