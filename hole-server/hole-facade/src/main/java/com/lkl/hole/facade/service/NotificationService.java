@@ -20,11 +20,11 @@ public interface NotificationService {
     /**
      * 分页获取数据
      *
-     * @param pageNumber
+     * @param pageNum
      * @param pageSize
      * @return
      */
-    PageInfo<Notification> findAll(int pageNumber, int pageSize, String openId);
+    PageInfo<Notification> findAll(String openId, int pageNum, int pageSize);
 
     /**
      * 插入通知

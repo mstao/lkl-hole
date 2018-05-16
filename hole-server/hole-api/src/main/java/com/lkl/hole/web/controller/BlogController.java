@@ -1,6 +1,7 @@
 package com.lkl.hole.web.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
 import com.lkl.hole.common.annotation.Authorization;
 import com.lkl.hole.facade.model.*;
 import com.lkl.hole.facade.service.BlogService;
@@ -9,6 +10,13 @@ import com.lkl.hole.web.config.Constants;
 import com.lkl.hole.web.constant.Pagination;
 import com.lkl.hole.web.util.RelativeDateFormat;
 import com.lkl.hole.web.vo.*;
+import com.qiniu.common.QiniuException;
+import com.qiniu.common.Zone;
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.util.Auth;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -22,7 +30,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +67,7 @@ public class BlogController extends BaseController {
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
                     paramType = "header")
     })
-    public ResponseEntity<ResultVO> getBlogs(@RequestParam(name = "page", defaultValue = "1") Integer page,
+    public ResponseEntity<ResultVO> getBlogs(@RequestParam(name = "page") Integer page,
                                              @RequestParam Integer version) {
         PageInfo<Blog> pageInfo = blogService.findAll(page, Pagination.PAGE_SIZE);
         List<Blog> blogs = pageInfo.getList();
@@ -114,7 +121,7 @@ public class BlogController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/blog/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/blogs/{id}", method = RequestMethod.GET)
     @ApiOperation(value="获取单条树洞详细信息", httpMethod="GET", notes="")
     @Authorization
     @ApiImplicitParams({
@@ -197,7 +204,7 @@ public class BlogController extends BaseController {
     /**
      * 点赞
      *
-     * @param bid
+     * @param blogIdVO
      * @return
      */
     @RequestMapping(value = "/blog/like", method = RequestMethod.POST)
@@ -207,29 +214,30 @@ public class BlogController extends BaseController {
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
                     paramType = "header")
     })
-    public ResponseEntity<ResultVO> like(@RequestBody Long bid) {
-        blogService.increaseLikeNum(bid);
+    public ResponseEntity<ResultVO> like(@RequestBody BlogIdVO blogIdVO) {
+        blogService.increaseLikeNum(blogIdVO.getBid());
 
         EmptyVO vo = new EmptyVO();
         ResultVO resultVO = new ResultVO(0, "", vo);
         return new ResponseEntity<>(resultVO, HttpStatus.OK);
     }
 
+
     /**
      * 删除
      *
-     * @param bid
+     * @param blogIdVO
      * @return
      */
     @RequestMapping(value = "/blog/delete", method = RequestMethod.POST)
-    @ApiOperation(value="点赞", httpMethod="POST", notes="")
+    @ApiOperation(value="删除", httpMethod="POST", notes="")
     @Authorization
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
                     paramType = "header")
     })
-    public ResponseEntity<ResultVO> delete(@RequestBody Long bid) {
-        blogService.delete(bid);
+    public ResponseEntity<ResultVO> delete(@RequestBody BlogIdVO blogIdVO) {
+        blogService.delete(blogIdVO.getBid());
         EmptyVO vo = new EmptyVO();
         ResultVO resultVO = new ResultVO(0, "", vo);
         return new ResponseEntity<>(resultVO, HttpStatus.OK);
@@ -288,7 +296,7 @@ public class BlogController extends BaseController {
     /**
      * 上传图片
      *
-     * @param myEditorImgName
+     * @param file
      * @param request
      * @return
      * @throws ServletException
@@ -301,23 +309,43 @@ public class BlogController extends BaseController {
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
                     paramType = "header")
     })
-    public ResponseEntity<ResultVO> uploadPic(MultipartFile myEditorImgName, HttpServletRequest request)
+    public ResponseEntity<ResultVO> uploadPic(MultipartFile file, HttpServletRequest request)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String fi = myEditorImgName.getOriginalFilename();
+
+        Configuration cfg = new Configuration(Zone.zone0());
+        UploadManager uploadManager = new UploadManager(cfg);
+        String fi = file.getOriginalFilename();
         // 提取文件拓展名
         String fileNameExtension = fi.substring(fi.lastIndexOf("."), fi.length());
         // 生成实际存储的真实文件名
         String realName = UUID.randomUUID().toString() + fileNameExtension;
-        // 图片存放的真实路径
-        String realPath = request.getServletContext().getRealPath(Constants.UPLOAD_IMAGE_PATH) + "/" + realName;
-        System.out.println(realPath);
-        // 将文件写入指定路径下
-        myEditorImgName.transferTo(new File(realPath));
-        // 返回图片的URL地址
-        String filePath = request.getContextPath() + Constants.UPLOAD_IMAGE_PATH + "/" + realName;
+        String key = realName;
+        String url = "";
+        try {
+            Auth auth = Auth.create(Constants.QINIU_ACCESS_KEY, Constants.QINIU_SECRET_KEY);
+            String upToken = auth.uploadToken(Constants.QINIU_UPLOAD_TOKEN);
+            try {
+                Response response = uploadManager.put(file.getInputStream(), key, upToken,null, null);
+                //解析上传成功的结果
+                DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+                url = Constants.QINIU_UPLOAD_URL + "/" + putRet.key;
+            } catch (QiniuException ex) {
+                Response r = ex.response;
+                System.err.println(r.toString());
+                try {
+                    System.err.println(r.bodyString());
+                } catch (QiniuException ex2) {
+                    //ignore
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception ex) {
+            //ignore
+        }
+
         UploadImageVO imageVO = new UploadImageVO();
-        imageVO.setUrl(filePath);
+        imageVO.setUrl(url);
         ResultVO resultVO = new ResultVO(0, "", imageVO);
         return new ResponseEntity<>(resultVO, HttpStatus.OK);
     }

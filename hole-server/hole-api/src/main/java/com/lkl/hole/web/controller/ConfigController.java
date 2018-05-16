@@ -25,7 +25,7 @@ public class ConfigController {
     @ApiOperation(value="Get configs", httpMethod="GET", notes="")
     public ResponseEntity<ResultVO> getConfigs() {
         ConfigVO configVO = new ConfigVO();
-        configVO.setTest(true);
+        configVO.setTest(false);
         ResultVO resultVO = new ResultVO(0, "", configVO);
         return new ResponseEntity<>(resultVO, HttpStatus.OK);
     }

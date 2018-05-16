@@ -1,6 +1,7 @@
 package com.lkl.hole.service.dao;
 
 import com.lkl.hole.facade.model.Blog;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

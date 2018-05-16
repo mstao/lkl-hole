@@ -27,8 +27,8 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public PageInfo<Notification> findAll(int pageNumber, int pageSize, String openId) {
-        PageHelper.startPage(pageNumber, pageSize);
+    public PageInfo<Notification> findAll(String openId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize, "gmt_create desc");
         List<Notification> notifications = notificationDao.selectByPage(openId);
         PageInfo<Notification> page = new PageInfo<>(notifications);
         return page;
