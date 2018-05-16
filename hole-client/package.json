@@ -21,7 +21,7 @@
   "author": "Jason",
   "license": "GPL",
   "dependencies": {
-    "wepy": "^1.5.1",
+    "wepy": "^1.7.1",
     "wepy-async-function": "^1.4.4",
     "wepy-com-toast": "^1.0.2"
   },
