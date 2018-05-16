@@ -121,7 +121,7 @@ export default class Index extends wepy.page {
     } catch (e) {
       wepy.showModal({
         title: '提示',
-        content: `用户登录失败，请截图本提示，并联系深大汪峰。${e.message}`
+        content: `用户登录失败，请截图本提示，并联系李凯龙。${e.message}`
       })
     }
 
