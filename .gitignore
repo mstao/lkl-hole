@@ -26,3 +26,10 @@
 .settings
 target
 .idea
+
+hole-client/.DS_Store
+hole-client/node_modules/
+hole-client/dist/
+hole-client/*.log
+hole-client/test/unit/coverage
+hole-client/.wepycache
