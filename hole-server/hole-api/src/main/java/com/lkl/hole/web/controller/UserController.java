@@ -14,7 +14,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +40,11 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     @ApiOperation(value="个人信息界面获取用户发表过的树洞", httpMethod="GET", notes="个人信息界面获取用户发表过的树洞")
+    @Authorization
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
+                    paramType = "header")
+    })
     public ResponseEntity<ResultVO> getUser(@RequestParam(name = "page") Integer page, HttpServletRequest request) {
         String openId = (String) request.getAttribute("openId");
         PageInfo<Blog> pageInfo = blogService.findByUser(openId, page, Pagination.PAGE_SIZE);
