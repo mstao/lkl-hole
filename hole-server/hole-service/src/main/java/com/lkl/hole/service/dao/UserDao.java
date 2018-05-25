@@ -38,5 +38,4 @@ public interface UserDao {
      * @return
      */
     int insert(User user);
-
 }

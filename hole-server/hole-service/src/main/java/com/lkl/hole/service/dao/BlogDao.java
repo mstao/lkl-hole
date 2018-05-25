@@ -47,4 +47,12 @@ public interface BlogDao {
      * @param blog
      */
     Long insert(Blog blog);
+
+
+    /**
+     * 个人信息界面获取用户发表过的树洞
+     *
+     * @return
+     */
+    List<Blog> selectByUser(@Param("openId") String openId);
 }
