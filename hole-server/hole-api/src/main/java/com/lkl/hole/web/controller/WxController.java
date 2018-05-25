@@ -1,30 +1,23 @@
 package com.lkl.hole.web.controller;
 
-import com.lkl.hole.common.util.RedisHelper;
 import com.lkl.hole.facade.model.User;
 import com.lkl.hole.facade.service.UserService;
 import com.lkl.hole.facade.service.WxService;
 import com.lkl.hole.web.constant.WxAuth;
-import com.lkl.hole.web.enums.ErrorStatus;
 import com.lkl.hole.web.vo.ResultVO;
 import com.lkl.hole.web.vo.SessionVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 
