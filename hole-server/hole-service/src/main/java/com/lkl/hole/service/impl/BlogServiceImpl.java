@@ -36,7 +36,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public PageInfo<Blog> findAll(Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum, pageSize, "b.gmt_create desc");
+        PageHelper.startPage(pageNum, pageSize);
         List<Blog> blogs = blogDao.selectByPage();
         PageInfo<Blog> page = new PageInfo<>(blogs);
         return page;
@@ -80,7 +80,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public PageInfo<Blog> findByUser(String openId, Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum, pageSize, "b.gmt_create desc");
+        PageHelper.startPage(pageNum, pageSize);
         List<Blog> blogs = blogDao.selectByUser(openId);
         PageInfo<Blog> page = new PageInfo<>(blogs);
         return page;

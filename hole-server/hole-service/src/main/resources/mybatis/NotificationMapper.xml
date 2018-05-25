@@ -28,7 +28,7 @@
                is_unread,
                gmt_create
         FROM hole_notification n
-        WHERE n.is_unread = 1 AND n.to = #{openId}
+        WHERE n.is_unread = 1 AND n.to = #{openId} ORDER BY gmt_create DESC
     </select>
 
     <insert id="insert" parameterType="com.lkl.hole.facade.model.Notification">

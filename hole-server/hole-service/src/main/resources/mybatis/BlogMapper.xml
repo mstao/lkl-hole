@@ -187,7 +187,7 @@
         LEFT JOIN hole_location lo ON lo.bid = b.id
         LEFT JOIN hole_user u ON u.id = b.uid
         LEFT JOIN hole_image i ON i.bid = b.id
-        WHERE b.is_deleted = 0
+        WHERE b.is_deleted = 0 ORDER BY b.gmt_create DESC
     </select>
 
     <select id="selectByUser" resultMap="blogResultMap">
@@ -244,7 +244,7 @@
           LEFT JOIN hole_user u ON u.id = c.uid
           WHERE c.is_deleted = 0
         ) co ON  co.bid = b.id
-        WHERE u.openid = #{openId} AND b.is_deleted = 0
+        WHERE u.openid = #{openId} AND b.is_deleted = 0 ORDER BY b.gmt_create DESC
     </select>
 
 
