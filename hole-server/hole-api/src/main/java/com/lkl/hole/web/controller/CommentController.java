@@ -61,23 +61,8 @@ public class CommentController extends BaseController {
         comment.setBid(commentVO.getBid());
         comment.setContent(commentVO.getContent());
         comment.setAnonymous(commentVO.getAnonymous());
-        Long cid = commentService.add(comment);
 
-        // 通知
-        String replyTo = commentVO.getReplyTo();
-        Notification notification = new Notification();
-
-        notification.setBid(commentVO.getBid());
-        notification.setCid(cid);
-        if (StringUtils.isEmpty(replyTo)) {
-            notification.setContent(commentVO.getContent());
-        } else {
-            User replyUser = userService.findByOpenId(replyTo);
-            notification.setContent("回复 " + replyUser.getNickName() + ": " + commentVO.getContent());
-            notification.setTo(replyTo);
-        }
-        notification.setFrom(openId);
-        notificationService.add(notification);
+        commentService.add(comment, openId, commentVO.getReplyTo());
 
         EmptyVO vo = new EmptyVO();
         ResultVO resultVO = new ResultVO(0, "", vo);

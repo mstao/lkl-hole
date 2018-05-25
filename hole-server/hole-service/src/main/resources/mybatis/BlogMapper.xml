@@ -277,4 +277,8 @@
     <update id="delete" parameterType="java.lang.Long">
         UPDATE hole_blog SET is_deleted = 1 WHERE id = #{id}
     </update>
+
+    <update id="increaseCommentNum" parameterType="java.lang.Long">
+        UPDATE hole_blog SET comment_num = comment_num + 1 where id = #{id}
+    </update>
 </mapper>

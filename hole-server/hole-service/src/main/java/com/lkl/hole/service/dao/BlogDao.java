@@ -34,6 +34,13 @@ public interface BlogDao {
     void increaseLikeNum(Long id);
 
     /**
+     * 评论数+1
+     *
+     * @param id
+     */
+    void increaseCommentNum(Long id);
+
+    /**
      * 删除
      *
      * @param id

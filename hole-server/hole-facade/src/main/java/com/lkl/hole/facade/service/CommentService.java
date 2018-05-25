@@ -13,7 +13,7 @@ public interface CommentService {
      *
      * @param comment
      */
-    Long add(Comment comment);
+    Long add(Comment comment, String from, String replyTo);
 
     /**
      * 删除评论
