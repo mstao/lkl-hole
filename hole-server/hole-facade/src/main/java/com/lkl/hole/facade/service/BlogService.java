@@ -47,12 +47,16 @@ public interface BlogService {
      * 发布
      *
      * @param blog
+     * @return
      */
     Long add(Blog blog);
 
     /**
      * 个人信息界面获取用户发表过的树洞
      *
+     * @param openId
+     * @param pageNum
+     * @param pageSize
      * @return
      */
     PageInfo<Blog> findByUser(String openId, Integer pageNum, Integer pageSize);

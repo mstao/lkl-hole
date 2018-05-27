@@ -98,14 +98,20 @@ public class BlogController extends BaseController {
                 UserVO userVO = new UserVO();
                 User user = blog.getUser();
                 userVO.setUid(user.getUid());
-                userVO.setNickname(user.getNickName());
-                userVO.setAvatar(user.getAvatarUrl());
+                // 匿名处理
+                if (blog.getAnonymous()) {
+                    userVO.setNickname(Constants.ANONYMOUS_NAME);
+                } else {
+                    userVO.setNickname(user.getNickName());
+                    userVO.setAvatar(user.getAvatarUrl());
+                }
+
                 userVO.setGender(user.getGender());
                 userVO.setOpenid(user.getOpenId());
                 userVO.setAdmin(user.getAdmin());
                 userVO.setAuthor(user.getAuthor());
                 userVO.setVerified(user.getVerified());
-                blogsVO.setUserVO(userVO);
+                blogsVO.setUser(userVO);
 
                 // 时间转换
                 blogsVO.setTime(RelativeDateFormat.format(blog.getGmtCreate()));
@@ -155,14 +161,20 @@ public class BlogController extends BaseController {
             UserVO userVO = new UserVO();
             User user = blog.getUser();
             userVO.setUid(user.getUid());
-            userVO.setNickname(user.getNickName());
-            userVO.setAvatar(user.getAvatarUrl());
+            // 匿名处理
+            if (blog.getAnonymous()) {
+                userVO.setNickname(Constants.ANONYMOUS_NAME);
+            } else {
+                userVO.setNickname(user.getNickName());
+                userVO.setAvatar(user.getAvatarUrl());
+            }
+
             userVO.setGender(user.getGender());
             userVO.setOpenid(user.getOpenId());
             userVO.setAdmin(user.getAdmin());
             userVO.setAuthor(user.getAuthor());
             userVO.setVerified(user.getVerified());
-            blogVO.setUserVO(userVO);
+            blogVO.setUser(userVO);
 
             // 时间转换
             blogVO.setTime(RelativeDateFormat.format(blog.getGmtCreate()));
@@ -177,9 +189,15 @@ public class BlogController extends BaseController {
                     BlogCommentVO blogCommentVO = new BlogCommentVO();
                     if (user1 != null) {
                         blogCommentVO.setOpenid(user1.getOpenId());
-                        blogCommentVO.setAvatar(user1.getAvatarUrl());
+                        if (comment.getAnonymous()) {
+                            blogCommentVO.setAvatar("");
+                            blogCommentVO.setNickname(Constants.ANONYMOUS_NAME);
+                        } else {
+                            blogCommentVO.setAvatar(user1.getAvatarUrl());
+                            blogCommentVO.setNickname(user1.getNickName());
+                        }
+
                         blogCommentVO.setUid(user1.getUid());
-                        blogCommentVO.setNickname(user1.getNickName());
                         blogCommentVO.setAdmin(user1.getAdmin());
                         blogCommentVO.setAuthor(user1.getAuthor());
                     }

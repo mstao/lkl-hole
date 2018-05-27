@@ -27,7 +27,7 @@ public class BlogVO implements Serializable {
 
     private String[] images;
     private LocationVO location;
-    private UserVO userVO;
+    private UserVO user;
     private List<BlogCommentVO> comments;
 
     public Long getId() {
@@ -118,12 +118,12 @@ public class BlogVO implements Serializable {
         this.location = location;
     }
 
-    public UserVO getUserVO() {
-        return userVO;
+    public UserVO getUser() {
+        return user;
     }
 
-    public void setUserVO(UserVO userVO) {
-        this.userVO = userVO;
+    public void setUser(UserVO user) {
+        this.user = user;
     }
 
     public List<BlogCommentVO> getComments() {
@@ -148,7 +148,7 @@ public class BlogVO implements Serializable {
                 ", time='" + time + '\'' +
                 ", images=" + Arrays.toString(images) +
                 ", location=" + location +
-                ", userVO=" + userVO +
+                ", user=" + user +
                 ", comments=" + comments +
                 '}';
     }

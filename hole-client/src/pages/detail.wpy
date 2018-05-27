@@ -7,7 +7,7 @@
         <view class="blog-user-avatar">
           <image
             class="avatar"
-            src="{{ blog.user.avatar === '../../assert/avatar.png' ? '../assets/svgs/avatar/avatar.svg' : blog.user.avatar }}">
+            src="{{ !blog.user.avatar ? '../assets/svgs/avatar/avatar.svg' : blog.user.avatar }}">
           </image>
         </view>
         <view class="blog-user-info">
@@ -85,9 +85,10 @@
           wx:for-item="comment"
           wx:for-index="i"
           wx:key="{{ i }}"
-          @tap.stop="showAction({{ comment.nickname }}, {{ comment.openid }}, {{ comment.isAdmin }}, {{ comment.isAuthor }}, {{ comment.cid }}, {{ i }})">
+          @tap.stop="showAction({{ comment.nickname }}, {{ comment.openid }}, {{ comment.isAdmin }}, {{ comment.isAuthor }}, {{ comment.cid }}, {{ i }})"
+          data-isAuthor="{{ comment.isAuthor }}">
           <view class="comment-user-info">
-            <image src="{{ comment.avatar }}" class="comment-user-avatar"></image>
+            <image src="{{ comment.avatar ? comment.avatar :'../assets/svgs/avatar/avatar.svg' }}" class="comment-user-avatar"></image>
           </view>
           <view class="comment-info">
             <text class="comment-nickname">{{ comment.nickname }}</text>
@@ -138,7 +139,7 @@ import sensitiveWordChecker from '../utils/sensitiveWordChecker'
 
 export default class Detail extends wepy.page {
   config = {
-    navigationBarTitleText: '树洞正文'
+    navigationBarTitleText: '秘密正文'
   }
 
   data = {
@@ -330,7 +331,7 @@ export default class Detail extends wepy.page {
         } catch (e) {
           wepy.showModal({
             title: '提示',
-            content: '删除评论失败。请重试或截图本提示，联系李凯龙。' + e.message
+            content: '删除评论失败。请重试或截图本提示，联系深大汪峰。' + e.message
           })
         }
       }
@@ -437,7 +438,7 @@ export default class Detail extends wepy.page {
         wepy.hideToast()
         wepy.showModal({
           title: '提示',
-          content: '发送评论失败。请重试或截图本提示，联系李凯龙。' + e.message
+          content: '发送评论失败。请重试或截图本提示，联系深大汪峰。' + e.message
         })
       }
     }
