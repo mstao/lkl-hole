@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdsController extends BaseController {
 
     @RequestMapping(value = "/ads/{id}", method = RequestMethod.GET)
-    @ApiOperation(value="Get ads", httpMethod="GET", notes="")
+    @ApiOperation(value="Get ads", httpMethod="GET", notes="获取广告信息")
     public ResponseEntity<ResultVO> getAds(@PathVariable Long id) {
         ResultVO resultVO = new ResultVO(0, "", "");
         return new ResponseEntity<>(resultVO, HttpStatus.OK);

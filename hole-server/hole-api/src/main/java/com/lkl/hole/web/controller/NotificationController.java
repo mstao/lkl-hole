@@ -1,6 +1,5 @@
 package com.lkl.hole.web.controller;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.lkl.hole.common.annotation.Authorization;
 import com.lkl.hole.facade.model.Notification;
@@ -41,8 +40,14 @@ public class NotificationController extends BaseController {
     @Autowired
     private Mapper mapper;
 
+    /**
+     * 获取通知数
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/notifications", method = RequestMethod.GET)
-    @ApiOperation(value="获取通知数", httpMethod="GET", notes="")
+    @ApiOperation(value="获取通知数", httpMethod="GET", notes="获取通知数")
     @Authorization
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
@@ -59,11 +64,14 @@ public class NotificationController extends BaseController {
     }
 
     /**
+     * 获取详细通知
      *
+     * @param page
+     * @param request
      * @return
      */
     @RequestMapping(value = "/notifications/messages", method = RequestMethod.GET)
-    @ApiOperation(value="获取详细通知", httpMethod="GET", notes="")
+    @ApiOperation(value="获取详细通知", httpMethod="GET", notes="获取详细通知")
     @Authorization
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
@@ -110,7 +118,7 @@ public class NotificationController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/notifications/{id}", method = RequestMethod.PUT)
-    @ApiOperation(value="标记通知为已读", httpMethod="PUT", notes="")
+    @ApiOperation(value="标记通知为已读", httpMethod="PUT", notes="标记通知为已读")
     @Authorization
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",

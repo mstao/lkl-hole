@@ -38,8 +38,15 @@ public class UserController extends BaseController {
     @Autowired
     private BlogService blogService;
 
+    /**
+     * 个人信息界面获取用户发表过的小秘密
+     *
+     * @param page
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    @ApiOperation(value="个人信息界面获取用户发表过的树洞", httpMethod="GET", notes="个人信息界面获取用户发表过的树洞")
+    @ApiOperation(value="个人信息界面获取用户发表过的小秘密", httpMethod="GET", notes="个人信息界面获取用户发表过的小秘密")
     @Authorization
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
@@ -86,12 +93,10 @@ public class UserController extends BaseController {
                     userVO.setLongitude(location.getLongitude());
                 }
 
-
                 // 获取用户
                 User user = blog.getUser();
 
                 userVO.setOpenid(user.getOpenId());
-
 
                 // 时间转换
                 userVO.setTime(RelativeDateFormat.format(blog.getGmtCreate()));

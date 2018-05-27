@@ -54,14 +54,14 @@ public class BlogController extends BaseController {
     private Mapper mapper;
 
     /**
-     * 树洞列表
+     * 获取小秘密列表
      *
-     * @param page
-     * @param version
-     * @return
+     * @param page 分页参数
+     * @param version 版本信息
+     * @return 小秘密列表
      */
     @RequestMapping(value = "/blogs", method = RequestMethod.GET)
-    @ApiOperation(value="树洞列表", httpMethod="GET", notes="")
+    @ApiOperation(value="小秘密列表", httpMethod="GET", notes="获取小秘密列表")
     @Authorization
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
@@ -127,8 +127,14 @@ public class BlogController extends BaseController {
     }
 
 
+    /**
+     * 获取单条小秘密详细信息
+     *
+     * @param id 小秘密id
+     * @return 单条小秘密详细信息
+     */
     @RequestMapping(value = "/blogs/{id}", method = RequestMethod.GET)
-    @ApiOperation(value="获取单条树洞详细信息", httpMethod="GET", notes="")
+    @ApiOperation(value="获取单条小秘密详细信息", httpMethod="GET", notes="获取单条小秘密详细信息")
     @Authorization
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
@@ -222,8 +228,8 @@ public class BlogController extends BaseController {
     /**
      * 点赞
      *
-     * @param blogIdVO
-     * @return
+     * @param blogIdVO 封装的实体
+     * @return {}
      */
     @RequestMapping(value = "/blog/like", method = RequestMethod.POST)
     @ApiOperation(value="点赞", httpMethod="POST", notes="")
@@ -244,8 +250,8 @@ public class BlogController extends BaseController {
     /**
      * 删除
      *
-     * @param blogIdVO
-     * @return
+     * @param blogIdVO 封装的实体
+     * @return {}
      */
     @RequestMapping(value = "/blog/delete", method = RequestMethod.POST)
     @ApiOperation(value="删除", httpMethod="POST", notes="")
@@ -262,10 +268,10 @@ public class BlogController extends BaseController {
     }
 
     /**
-     * 发布新树洞
+     * 发布新小秘密
      *
-     * @param requestBlogVO
-     * @return
+     * @param requestBlogVO 小秘密实体
+     * @return {}
      */
     @RequestMapping(value = "/blogs", method = RequestMethod.POST)
     @ApiOperation(value="发布新树洞", httpMethod="POST", notes="")
@@ -314,7 +320,7 @@ public class BlogController extends BaseController {
     /**
      * 上传图片
      *
-     * @param file
+     * @param file 要上传的文件
      * @param request
      * @return
      * @throws ServletException
@@ -336,9 +342,9 @@ public class BlogController extends BaseController {
         // 提取文件拓展名
         String fileNameExtension = fi.substring(fi.lastIndexOf("."), fi.length());
         // 生成实际存储的真实文件名
-        String realName = UUID.randomUUID().toString() + fileNameExtension;
-        String key = realName;
+        String key = UUID.randomUUID().toString() + fileNameExtension;
         String url = "";
+
         try {
             Auth auth = Auth.create(Constants.QINIU_ACCESS_KEY, Constants.QINIU_SECRET_KEY);
             String upToken = auth.uploadToken(Constants.QINIU_UPLOAD_TOKEN);
@@ -360,6 +366,7 @@ public class BlogController extends BaseController {
             }
         } catch (Exception ex) {
             //ignore
+            logger.error("Uploads {} occurs error.", key);
         }
 
         UploadImageVO imageVO = new UploadImageVO();

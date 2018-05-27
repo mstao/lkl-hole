@@ -33,6 +33,12 @@ public class WxController extends BaseController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 微信登录
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/user/wxlogin", method = RequestMethod.POST)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-wechat-code", value = "微信登录的 code", required = true, dataType = "String",
