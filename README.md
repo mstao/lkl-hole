@@ -13,9 +13,9 @@
 
 ## 编译运行
 
-### 后台编译运行
+### 后端编译运行
 
-后台使用maven进行构建，编译需要安装maven。
+后端使用maven进行构建，编译需要安装maven。
 
 进入到**hole-server**文件夹，执行以下命令：
 
@@ -37,7 +37,7 @@ java -jar hole-service.jar &
 
 [点我，查看](https://github.com/mstao/lkl-hole/blob/master/hole-client/README.md)
 
-后台开发环境：
+后端开发环境：
 
 - JDK 1.8
 - MySQL 5.7
