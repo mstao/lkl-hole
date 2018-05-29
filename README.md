@@ -13,8 +13,8 @@
 
 ### 这个样
 <center class="half">
-    <img src="http://p8rape2j2.bkt.clouddn.com/Screenshot_20180529-161220.jpg" width="300" style="display:inline"/>
-    <img src="http://p8rape2j2.bkt.clouddn.com/Screenshot_20180529-161318.jpg" width="300" style="display:inline" />
+    <img src="http://p8rape2j2.bkt.clouddn.com/Screenshot_20180529-161220.jpg" width="200" style="display:inline"/>
+    <img src="http://p8rape2j2.bkt.clouddn.com/Screenshot_20180529-161318.jpg" width="200" style="display:inline" />
 </center>
 
 ## 编译运行
