@@ -15,4 +15,9 @@ public class Constants {
     public static final String QINIU_UPLOAD_TOKEN = "images";
 
     public static final String QINIU_UPLOAD_URL = "http://p8rape2j2.bkt.clouddn.com";
+
+    /**
+     * 匿名时显示的名称
+     */
+    public static final String ANONYMOUS_NAME = "这个昵称没人起";
 }

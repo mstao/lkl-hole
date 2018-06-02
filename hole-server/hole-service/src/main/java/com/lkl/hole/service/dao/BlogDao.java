@@ -34,6 +34,13 @@ public interface BlogDao {
     void increaseLikeNum(Long id);
 
     /**
+     * 评论数+1
+     *
+     * @param id
+     */
+    void increaseCommentNum(Long id);
+
+    /**
      * 删除
      *
      * @param id
@@ -47,4 +54,12 @@ public interface BlogDao {
      * @param blog
      */
     Long insert(Blog blog);
+
+
+    /**
+     * 个人信息界面获取用户发表过的树洞
+     *
+     * @return
+     */
+    List<Blog> selectByUser(@Param("openId") String openId);
 }

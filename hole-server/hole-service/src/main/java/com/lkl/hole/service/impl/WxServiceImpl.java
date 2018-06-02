@@ -2,12 +2,10 @@ package com.lkl.hole.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lkl.hole.common.util.HttpUtil;
-import com.lkl.hole.common.util.RedisHelper;
 import com.lkl.hole.facade.model.Token;
 import com.lkl.hole.facade.service.RedisTokenService;
 import com.lkl.hole.facade.service.WxService;
 import com.lkl.hole.service.constant.WxAuth;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

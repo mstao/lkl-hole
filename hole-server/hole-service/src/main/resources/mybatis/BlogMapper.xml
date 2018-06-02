@@ -103,7 +103,7 @@
         </collection>
     </resultMap>
 
-    <!-- 根据id获取用户信息 -->
+    <!-- 根据id获取信息 -->
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="blogResultMap">
         SELECT b.id,
                b.text,
@@ -187,8 +187,66 @@
         LEFT JOIN hole_location lo ON lo.bid = b.id
         LEFT JOIN hole_user u ON u.id = b.uid
         LEFT JOIN hole_image i ON i.bid = b.id
-        WHERE b.is_deleted = 0
+        WHERE b.is_deleted = 0 ORDER BY b.gmt_create DESC
     </select>
+
+    <select id="selectByUser" resultMap="blogResultMap">
+        SELECT b.id,
+               b.text,
+               b.device,
+               b.is_fixed,
+               b.like,
+               b.like_num,
+               b.comment_num,
+               b.gmt_create,
+               b.is_anonymous,
+               lo.location_name,
+               lo.latitude,
+               lo.longitude,
+               u.id b_uid,
+               u.openid b_openid,
+               u.avatar b_avatar,
+               u.nickname b_nickname,
+               u.gender b_gender,
+               u.is_admin b_is_admin,
+               u.is_author b_is_author,
+               u.is_verified b_is_verified,
+               i.url,
+               co.cid,
+               co.uid c_uid,
+               co.content c_content,
+               co.is_anonymous c_is_anonymous,
+               co.gmt_create c_gmt_create,
+               co.openid c_openid,
+               co.avatar c_avatar,
+               co.nickname c_nickname,
+               co.gender c_gender,
+               co.is_admin c_is_admin,
+               co.is_author c_is_author
+        FROM hole_blog b
+        LEFT JOIN hole_location lo ON lo.bid = b.id
+        LEFT JOIN hole_user u ON u.id = b.uid
+        LEFT JOIN hole_image i ON i.bid = b.id
+        LEFT JOIN (
+          SELECT c.id cid,
+                 c.uid,
+                 c.bid,
+                 c.content,
+                 c.is_anonymous,
+                 c.gmt_create,
+                 u.openid,
+                 u.avatar,
+                 u.nickname,
+                 u.gender,
+                 u.is_admin,
+                 u.is_author
+          FROM hole_comment c
+          LEFT JOIN hole_user u ON u.id = c.uid
+          WHERE c.is_deleted = 0
+        ) co ON  co.bid = b.id
+        WHERE u.openid = #{openId} AND b.is_deleted = 0 ORDER BY b.gmt_create DESC
+    </select>
+
 
     <insert id="insert" parameterType="com.lkl.hole.facade.model.Blog" useGeneratedKeys="true" keyProperty="id">
         insert into hole_blog(text, device, uid, is_anonymous, gmt_create, gmt_modified)
@@ -218,5 +276,9 @@
 
     <update id="delete" parameterType="java.lang.Long">
         UPDATE hole_blog SET is_deleted = 1 WHERE id = #{id}
+    </update>
+
+    <update id="increaseCommentNum" parameterType="java.lang.Long">
+        UPDATE hole_blog SET comment_num = comment_num + 1 where id = #{id}
     </update>
 </mapper>

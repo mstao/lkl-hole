@@ -1,38 +1,32 @@
 package com.lkl.hole.web.controller;
 
-import com.lkl.hole.common.util.RedisHelper;
 import com.lkl.hole.facade.model.User;
 import com.lkl.hole.facade.service.UserService;
 import com.lkl.hole.facade.service.WxService;
 import com.lkl.hole.web.constant.WxAuth;
-import com.lkl.hole.web.enums.ErrorStatus;
 import com.lkl.hole.web.vo.ResultVO;
 import com.lkl.hole.web.vo.SessionVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 
 /**
- * Created by lihang on 2017/4/13.
+ * @Author: mingshan
+ * @Date: Created in 17:17 2018/5/11
  */
+@Api(value = "wechat")
 @Controller
-@Api(value = "用户登陆态相关API")
 public class WxController extends BaseController {
     @Autowired
     private WxService wxService;
@@ -40,7 +34,14 @@ public class WxController extends BaseController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 微信登录
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/user/wxlogin", method = RequestMethod.POST)
+    @ApiOperation(value="微信登录", httpMethod="POST", notes="微信登录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "x-wechat-code", value = "微信登录的 code", required = true, dataType = "String",
                     paramType = "header"),
@@ -49,7 +50,6 @@ public class WxController extends BaseController {
             @ApiImplicitParam(name = "x-wechat-iv", value = "解密向量", required = true, dataType = "String",
                     paramType = "header")
     })
-    @ResponseBody
     public ResponseEntity<ResultVO> login(HttpServletRequest request) {
         String wxCode = request.getHeader(WxAuth.WX_CODE);
         String wxEncrypted = request.getHeader(WxAuth.WX_ENCRYPTED);

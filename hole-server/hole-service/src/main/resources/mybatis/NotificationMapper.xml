@@ -12,6 +12,8 @@
         <result column="from" property="from"/>
         <result column="to" property="to"/>
         <result column="content" property="content"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
     </resultMap>
 
     <select id="selectCount" resultType="java.lang.Integer">
@@ -26,9 +28,10 @@
                `to`
                content,
                is_unread,
-               gmt_create
+               gmt_create,
+               gmt_modified
         FROM hole_notification n
-        WHERE n.is_unread = 1 AND n.to = #{openId}
+        WHERE n.is_unread = 1 AND n.to = #{openId} ORDER BY gmt_create DESC
     </select>
 
     <insert id="insert" parameterType="com.lkl.hole.facade.model.Notification">

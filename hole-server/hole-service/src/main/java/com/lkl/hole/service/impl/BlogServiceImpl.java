@@ -9,10 +9,13 @@ import com.lkl.hole.facade.service.BlogService;
 import com.lkl.hole.service.dao.BlogDao;
 import com.lkl.hole.service.dao.ImageDao;
 import com.lkl.hole.service.dao.LocationDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 /**
  * @Author: mingshan
@@ -20,6 +23,7 @@ import java.util.List;
  */
 @Service
 public class BlogServiceImpl implements BlogService {
+    private static final Logger logger = LoggerFactory.getLogger(BlogServiceImpl.class);
 
     @Autowired
     private BlogDao blogDao;
@@ -31,8 +35,8 @@ public class BlogServiceImpl implements BlogService {
     private ImageDao imageDao;
 
     @Override
-    public PageInfo<Blog> findAll(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize, "gmt_create desc");
+    public PageInfo<Blog> findAll(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         List<Blog> blogs = blogDao.selectByPage();
         PageInfo<Blog> page = new PageInfo<>(blogs);
         return page;
@@ -57,7 +61,7 @@ public class BlogServiceImpl implements BlogService {
     public Long add(Blog blog) {
         blogDao.insert(blog);
         Long bid = blog.getId();
-        System.out.println("Add blog; bid = " + bid);
+        logger.info("Add blog; bid = " + bid);
         Location location = blog.getLocation();
         if (location != null) {
             location.setBid(bid);
@@ -72,5 +76,13 @@ public class BlogServiceImpl implements BlogService {
         }
 
         return bid;
+    }
+
+    @Override
+    public PageInfo<Blog> findByUser(String openId, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Blog> blogs = blogDao.selectByUser(openId);
+        PageInfo<Blog> page = new PageInfo<>(blogs);
+        return page;
     }
 }

@@ -10,7 +10,7 @@ export default class extends wepy.app {
       'pages/detail'
     ],
     window: {
-      navigationBarTitleText: '树洞是个什么？',
+      navigationBarTitleText: '一言一诗一心境',
       navigationBarBackgroundColor: '#FA6570',
       navigationBarTextStyle: 'white',
       backgroundColor: '#F8F8F8',

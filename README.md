@@ -1,21 +1,27 @@
-# lkl-hole
+# 一言一诗一心境
 
 ## 深大的树洞2.0 (小程序 + 后端)
 
 >本仓库是深大的树洞微信小程序对应的开源仓库，旨在分享微信小程序的开发经验。
 
 本仓库微信小程序Fork自
-[微信小程序 - 深大的树洞 2.0 ](https://note.youdao.com/)，感谢原作者对小程序开发的技术分享。
+[微信小程序 - 深大的树洞 2.0 ](https://github.com/jas0ncn/szushudong)，感谢原作者对小程序开发的技术分享。
 
 同时，请注意本仓库的开源协议为 GPL，这意味着你拥有运行、复制、修改、发行和传播该软件的自由，但是你修改后的软件本身也受 GPL 约束，你必须开放源代码。
 
 后端实现采用Java编写，结合Dubbo进行服务调用。
 
+### 这个样
+<figure>
+    <img src="http://p8rape2j2.bkt.clouddn.com/Screenshot_20180529-161220.jpg" width="300"/>
+    <img src="http://p8rape2j2.bkt.clouddn.com/Screenshot_20180529-161318.jpg" width="300"/>
+</figure>
+
 ## 编译运行
 
-### 后台编译运行
+### 后端编译运行
 
-后台使用maven进行构建，编译需要安装maven。
+后端使用maven进行构建，编译需要安装maven。
 
 进入到**hole-server**文件夹，执行以下命令：
 
@@ -37,7 +43,7 @@ java -jar hole-service.jar &
 
 [点我，查看](https://github.com/mstao/lkl-hole/blob/master/hole-client/README.md)
 
-后台开发环境：
+后端开发环境：
 
 - JDK 1.8
 - MySQL 5.7

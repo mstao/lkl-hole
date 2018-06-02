@@ -6,7 +6,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConfigController {
 
     @RequestMapping(value = "/configs", method = RequestMethod.GET)
-    @ApiOperation(value="Get configs", httpMethod="GET", notes="")
+    @ApiOperation(value="Get configs", httpMethod="GET", notes="获取配置信息")
     public ResponseEntity<ResultVO> getConfigs() {
         ConfigVO configVO = new ConfigVO();
         configVO.setTest(false);

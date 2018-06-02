@@ -12,8 +12,11 @@ public interface CommentService {
      * 添加新评论
      *
      * @param comment
+     * @param from
+     * @param replyTo
+     * @return
      */
-    Long add(Comment comment);
+    Long add(Comment comment, String from, String replyTo);
 
     /**
      * 删除评论
