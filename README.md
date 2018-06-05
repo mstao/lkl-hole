@@ -11,6 +11,12 @@
 
 后端实现采用Java编写，结合Dubbo进行服务调用。
 
+### 这个样
+<figure>
+    <img src="http://p8rape2j2.bkt.clouddn.com/Screenshot_20180529-161220.jpg" width="300"/>
+    <img src="http://p8rape2j2.bkt.clouddn.com/Screenshot_20180529-161318.jpg" width="300"/>
+</figure>
+
 ## 编译运行
 
 ### 后端编译运行
