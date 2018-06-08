@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2018-05-15 09:35:23
+Date: 2018-06-05 23:44:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,11 +38,11 @@ CREATE TABLE `hole_blog` (
 -- ----------------------------
 -- Records of hole_blog
 -- ----------------------------
-INSERT INTO `hole_blog` VALUES ('1', null, '【听荔电台点歌贴vol.03】点歌节目每周一晚更新♪(๑ᴖ◡ᴖ๑)♪\n点歌要求如下\n1.要点的歌的歌名和歌手的名字\n2.你要把这首歌送给谁\n3.你要对Ta说的话\n4.你要署名为什么\n我们将会做成广播节目，周一晚上在听荔公众号播出。\n\n请评论留言进行点歌，按照格式点歌，方便主播阅读和理解，感谢支持\n1.XXXX\n2.XXXX\n3.XXXX\n4.XXXX', 'iPhone7 Plus', '2018-05-14 22:13:37', '2018-05-14 22:13:37', '1', '0', '0', '0', '1', '1');
-INSERT INTO `hole_blog` VALUES ('2', '2', '【听荔电台点歌贴vol.03】点歌节目每周一晚更新♪(๑ᴖ◡ᴖ๑)♪\n点歌要求如下\n1.要点的歌的歌名和歌手的名字\n2.你要把这首歌送给谁\n3.你要对Ta说的话\n4.你要署名为什么\n我们将会做成广播节目，周一晚上在听荔公众号播出。\n\n请评论留言进行点歌，按照格式点歌，方便主播阅读和理解，感谢支持\n1.XXXX\n2.XXXX\n3.XXXX\n4.XXXX', 'MI 6', '2018-05-14 22:47:11', '2018-05-14 22:47:11', '1', '0', '1', '0', '0', '1');
+INSERT INTO `hole_blog` VALUES ('1', '2', '【听荔电台点歌贴vol.03】点歌节目每周一晚更新♪(๑ᴖ◡ᴖ๑)♪\n点歌要求如下\n1.要点的歌的歌名和歌手的名字\n2.你要把这首歌送给谁\n3.你要对Ta说的话\n4.你要署名为什么\n我们将会做成广播节目，周一晚上在听荔公众号播出。\n\n请评论留言进行点歌，按照格式点歌，方便主播阅读和理解，感谢支持\n1.XXXX\n2.XXXX\n3.XXXX\n4.XXXX', 'iPhone7 Plus', '2018-05-14 22:13:37', '2018-05-14 22:13:37', '1', '0', '2', '2', '1', '1');
+INSERT INTO `hole_blog` VALUES ('2', '2', '【听荔电台点歌贴vol.03】点歌节目每周一晚更新♪(๑ᴖ◡ᴖ๑)♪\n点歌要求如下\n1.要点的歌的歌名和歌手的名字\n2.你要把这首歌送给谁\n3.你要对Ta说的话\n4.你要署名为什么\n我们将会做成广播节目，周一晚上在听荔公众号播出。\n\n请评论留言进行点歌，按照格式点歌，方便主播阅读和理解，感谢支持\n1.XXXX\n2.XXXX\n3.XXXX\n4.XXXX', 'MI 6', '2018-05-14 22:47:11', '2018-05-14 22:47:11', '1', '0', '3', '1', '0', '1');
 INSERT INTO `hole_blog` VALUES ('3', '2', '【美国服装巨头Gap为“删减”中国地图道歉】', 'MI 6', '2018-05-14 23:01:54', '2018-05-14 23:01:54', '1', '0', '0', '0', '0', '1');
 INSERT INTO `hole_blog` VALUES ('4', '2', '周杰伦的土味歌词可以说非常逗了，“哥练的胸肌” 女生怎么能唱出口啊[允悲]\r\n哈哈哈哈哈哈大早上被方文山微博评论逗笑了 ​[笑cry] ​​​​ ', 'MI 6', '2018-05-14 23:04:13', '2018-05-14 23:04:13', '1', '0', '0', '0', '0', '1');
-INSERT INTO `hole_blog` VALUES ('5', '2', '【扎克伯格今天34岁：出生以来平均每天赚600万美元[衰][衰]】', 'MI 6', '2018-05-15 00:29:27', '2018-05-15 00:29:27', '1', '0', '0', '0', '0', null);
+INSERT INTO `hole_blog` VALUES ('5', '2', '【扎克伯格今天34岁：出生以来平均每天赚600万美元[衰][衰]】', 'MI 6', '2018-05-15 00:29:27', '2018-05-15 00:29:27', '1', '0', '0', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for hole_comment
@@ -58,7 +58,7 @@ CREATE TABLE `hole_comment` (
   `gmt_modified` datetime DEFAULT NULL,
   `is_deleted` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hole_comment
@@ -71,6 +71,8 @@ INSERT INTO `hole_comment` VALUES ('5', '2', '3', 'qqqweqqeq', '1', '2018-05-15 
 INSERT INTO `hole_comment` VALUES ('6', '2', '3', '踩踩踩踩踩踩踩踩踩踩踩踩從', '1', '2018-05-15 08:45:20', '2018-05-15 08:45:20', '0');
 INSERT INTO `hole_comment` VALUES ('7', '2', '3', 'xxxxx', '1', '2018-05-15 08:50:22', '2018-05-15 08:50:22', '0');
 INSERT INTO `hole_comment` VALUES ('8', '2', '4', 'good', '1', '2018-05-15 09:12:55', '2018-05-15 09:12:55', '0');
+INSERT INTO `hole_comment` VALUES ('9', '2', '2', '可以', '0', '2018-05-25 18:14:04', '2018-05-25 18:14:04', '0');
+INSERT INTO `hole_comment` VALUES ('10', '2', '5', '55rtrryrt', '1', '2018-05-27 12:10:45', '2018-05-27 12:10:45', '0');
 
 -- ----------------------------
 -- Table structure for hole_image
@@ -134,8 +136,8 @@ CREATE TABLE `hole_notification` (
 -- ----------------------------
 -- Records of hole_notification
 -- ----------------------------
-INSERT INTO `hole_notification` VALUES ('1', '3', '3', 'os9sm0fRS_8nsIM4kY6fe5Vng2wI', '', 'zzzzzzzzzzz', '0', '2018-05-15 09:07:00', '2018-05-15 09:07:00');
-INSERT INTO `hole_notification` VALUES ('2', '8', '4', 'os9sm0fRS_8nsIM4kY6fe5Vng2wI', null, 'good', '1', '2018-05-15 09:12:55', '2018-05-15 09:12:55');
+INSERT INTO `hole_notification` VALUES ('1', '3', '3', 'os9sm0fRS_8nsIM4kY6fe5Vng2wI', 'os9sm0fRS_8nsIM4kY6fe5Vng2wI', 'zzzzzzzzzzz', '1', '2018-05-15 09:07:00', '2018-05-15 09:07:00');
+INSERT INTO `hole_notification` VALUES ('2', '8', '4', 'os9sm0fRS_8nsIM4kY6fe5Vng2wI', 'os9sm0fRS_8nsIM4kY6fe5Vng2wI', 'good', '1', '2018-05-15 09:12:55', '2018-05-15 09:12:55');
 
 -- ----------------------------
 -- Table structure for hole_user
@@ -154,7 +156,7 @@ CREATE TABLE `hole_user` (
   `gmt_create` datetime DEFAULT NULL,
   `gmt_modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hole_user

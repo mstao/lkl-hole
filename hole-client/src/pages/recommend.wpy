@@ -1,0 +1,289 @@
+<template>
+  <view class="main-list">
+    
+     <view class="list-container">
+        <navigator
+        wx:for="{{ list }}"
+        wx:for-item="item"
+        wx:key="{{ idx }}"
+        wx:for-index="idx"
+        class="list-item">
+
+        <!-- User Info -->
+        <view class="list-user">
+            <view class="list-user-info">
+            <view class="list-user-nickname">
+                <text class="nickname">{{ item.title }}</text>
+            </view>
+            <text class="time-and-from">{{ item.date}}</text>
+            </view>
+        </view>
+        <!-- Blog Body -->
+        <view class="list-item-body">
+            <text class="list-item-body-content">{{ item.content }}</text>
+        </view>
+
+        </navigator>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import store from '../store'
+
+export default class List extends wepy.component {
+  data = {
+    list: [
+        {
+            id: 1,
+            title: '习近平向俄罗斯总统普京授予首枚“友谊勋章”',
+            content: '中共中央政治局常委、中央书记处书记、党和国家功勋荣誉表彰工作委员会主任王沪宁，中共中央政治局常委、国务院副总理韩正出席授勋仪式。',
+            date: '2018-06-08'
+        },
+        {
+            id: 2,
+            title: '河南14项工作被国务院表扬激励，全国第一!',
+            content: '每到新学年，学校总要对上学年考试的优等生进行表彰、鼓励。这不，在去年“落实有关重大政策措施”的考试中，河南这个“优等生”的14个“科目”被国务院表扬，总体“成绩”全国第一。',
+            date: '2018-06-08'
+        },
+        {
+            id: 3,
+            title: '举国抵制马云？越南单方面宣布：全面封杀支付宝！',
+            content: '支付宝进入越南的时候，是提前与NAPAS成员银行及其中介支付服务网络进行对接的，合理合法的在越南提供交换和电子结算服务。',
+            date: '2018-06-07'
+        }
+    ]
+  }
+
+  async onShow () {
+    // noop
+  }
+
+ onComponentLoad () {
+    this.$apply()
+  }
+}
+</script>
+
+<style lang="less">
+.main-list {
+  width: 100%;
+
+  .ads {
+    position: relative;
+    width: 100%;
+
+    .ad-image {
+      width: 100%;
+      height: 70px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 23px;
+      right: 23px;
+      width: 24px;
+      height: 24px;
+      opacity: .5;
+
+      image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+</style>
+
+
+<style lang="less">
+.list-container {
+  width: 100%;
+  margin-bottom: 60px;
+
+  /* new btn */
+  .newBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 70px;
+    width: 60px;
+    height: 60px;
+    background: #FA6570;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+    transition: all 150ms ease;
+    z-index: 100;
+
+    .newBtn-icon {
+      margin-top: 15px;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .newBtn-hover {
+    background: #D75760;
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  }
+
+  .list-item {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    padding-bottom: 12px;
+    margin-bottom: 10px;
+    background: #FFF;
+    overflow: hidden;
+
+    .list-user {
+      width: 100%;
+      overflow: hidden;
+
+      .list-user-info {
+        float: left;
+
+        .list-user-nickname {
+          overflow: hidden;
+
+          .nickname {
+            float: left;
+            margin-top: 5px;
+            margin-right: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 20px;
+            color: #333;
+          }
+
+          .verify {
+            float: left;
+            width: 15px;
+            height: 15px;
+            margin-top: 6px;
+          }
+        }
+
+        .time-and-from {
+          width: 100%;
+          margin-top: 2px;
+          font-size: 12px;
+          color: #777;
+          display: block;
+        }
+      }
+    }
+
+    /* body */
+    .list-item-body {
+      width: 100%;
+      margin-top: 10px;
+      box-sizing: border-box;
+      overflow: hidden;
+
+      .list-item-body-content {
+        float: left;
+        width: 100%;
+        font-size: 16px;
+        line-height: 28px;
+        color: #333;
+        text-align: justify;
+      }
+
+      .list-item-body-images {
+        float: left;
+        width: 100%;
+        margin-top: 10px;
+
+        .list-item-body-image {
+          float: left;
+          width: 30%;
+          margin-right: 5px;
+          margin-top: 5px;
+          height: 110px;
+        }
+      }
+
+      .list-item-location {
+        float: left;
+        margin-top: 10px;
+        width: 250px;
+        height: 24px;
+
+        .location-icon {
+          width: 24px;
+          height: 24px;
+          vertical-align: middle;
+        }
+
+        text {
+          font-size: 14px;
+          line-height: 24px;
+          font-weight: bold;
+          color: #FA6570;
+        }
+      }
+    }
+
+    .list-item-operations {
+      width: 100%;
+      margin-top: 10px;
+      padding-top: 15px;
+      border-top: 1px solid #EEE;
+      overflow: hidden;
+
+      .list-item-operation-like,
+      .list-item-operation-comment,
+      .list-item-operation-more {
+        float: left;
+        width: 70px;
+        position: relative;
+        text-align: center;
+
+        .list-item-operation-icon {
+          margin-right: 5px;
+          width: 20px;
+          height: 20px;
+        }
+
+        .number {
+          position: absolute;
+          top: 5px;
+          left: 50%;
+          margin-left: 12px;
+          color: #999;
+          font-size: 14px;
+          line-height: 14px;
+          font-weight: bold;
+        }
+
+        .active {
+          color: #FA6570;
+        }
+      }
+
+      .list-item-operation-like-scale {
+        animation: clickAnimation 300ms ease;
+      }
+
+      .list-item-operation-more {
+        float: right;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@keyframes clickAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+</style>
