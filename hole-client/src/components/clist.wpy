@@ -80,8 +80,7 @@
         </navigator>
         <view
           @tap.stop="showMore({{ idx }}, {{ item.id }})"
-          class="list-item-operation-more"
-          wx:if="{{ item.user.isAdmin || item.user.isAuthor }}">
+          class="list-item-operation-more">
           <image
             class="list-item-operation-icon"
             src="../assets/svgs/more.svg"></image>
