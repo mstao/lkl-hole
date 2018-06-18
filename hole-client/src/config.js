@@ -49,7 +49,7 @@ const api = {
       url: '/v2/blog/like'
     },
     delete: {
-      method: 'POST',
+      method: 'DELETE',
       url: '/v2/blog/delete'
     },
     imageUpload: {

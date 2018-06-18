@@ -68,7 +68,11 @@ public class BlogController extends BaseController {
                     paramType = "header")
     })
     public ResponseEntity<ResultVO> getBlogs(@RequestParam(name = "page") Integer page,
-                                             @RequestParam Integer version) {
+                                             @RequestParam Integer version,
+                                             HttpServletRequest request) {
+        String openId = (String) request.getAttribute("openId");
+        User currentUser = userService.findByOpenId(openId);
+
         PageInfo<Blog> pageInfo = blogService.findAll(page, Pagination.PAGE_SIZE);
         List<Blog> blogs = pageInfo.getList();
         List<BlogsVO> blogsVOs = new ArrayList<>();
@@ -109,7 +113,12 @@ public class BlogController extends BaseController {
                 userVO.setGender(user.getGender());
                 userVO.setOpenid(user.getOpenId());
                 userVO.setAdmin(user.getAdmin());
-                userVO.setAuthor(user.getAuthor());
+                // 判断当前用户是否为小秘密作者
+                if (currentUser.getUid().equals(blog.getUid())) {
+                    userVO.setAuthor(true);
+                } else {
+                    userVO.setAuthor(false);
+                }
                 userVO.setVerified(user.getVerified());
                 blogsVO.setUser(userVO);
 
@@ -140,7 +149,10 @@ public class BlogController extends BaseController {
             @ApiImplicitParam(name = "x-wechat-session", value = "登陆时颁发的 session", required = true, dataType = "String",
                     paramType = "header")
     })
-    public ResponseEntity<ResultVO> getById(@PathVariable Long id) {
+    public ResponseEntity<ResultVO> getById(@PathVariable Long id, HttpServletRequest request) {
+        String openId = (String) request.getAttribute("openId");
+        User currentUser = userService.findByOpenId(openId);
+
         Blog blog = blogService.getById(id);
         BlogVO blogVO = new BlogVO();
         if (blog != null) {
@@ -178,7 +190,13 @@ public class BlogController extends BaseController {
             userVO.setGender(user.getGender());
             userVO.setOpenid(user.getOpenId());
             userVO.setAdmin(user.getAdmin());
-            userVO.setAuthor(user.getAuthor());
+            // 判断当前用户是否为小秘密作者
+            if (currentUser.getUid().equals(user.getUid())) {
+                userVO.setAuthor(true);
+            } else {
+                userVO.setAuthor(false);
+            }
+
             userVO.setVerified(user.getVerified());
             blogVO.setUser(userVO);
 
@@ -253,7 +271,7 @@ public class BlogController extends BaseController {
      * @param blogIdVO 封装的实体
      * @return {}
      */
-    @RequestMapping(value = "/blog/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/blog/delete", method = RequestMethod.DELETE)
     @ApiOperation(value="删除", httpMethod="POST", notes="")
     @Authorization
     @ApiImplicitParams({
@@ -350,7 +368,7 @@ public class BlogController extends BaseController {
             String upToken = auth.uploadToken(Constants.QINIU_UPLOAD_TOKEN);
             try {
                 Response response = uploadManager.put(file.getInputStream(), key, upToken,null, null);
-                //解析上传成功的结果
+                // 解析上传成功的结果
                 DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
                 url = Constants.QINIU_UPLOAD_URL + "/" + putRet.key;
             } catch (QiniuException ex) {
